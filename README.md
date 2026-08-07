@@ -1,16 +1,19 @@
-# React + Vite
+# Fieldman
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Fieldman is an Airsoft Field Management System. The initial module provides secure player registration and fast front-desk search through a Node.js API and a React/Tailwind interface.
 
-Currently, two official plugins are available:
+## Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `backend/` — Express REST API, Zod validation, and the Supabase server-side integration.
+- `frontend/` — Vite/React user interface. It talks only to the REST API.
+- `supabase/migrations/` — PostgreSQL migrations to apply through the Supabase CLI or dashboard.
 
-## React Compiler
+## Local setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Copy `backend/.env.example` to `backend/.env` and set the Supabase URL and **service-role** key. Keep this key on the backend only.
+2. Copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_BASE_URL` (normally `http://localhost:3001`).
+3. Install dependencies with `npm install`.
+4. Apply `supabase/migrations/20260804000000_create_players.sql` to the target Supabase project.
+5. Run `npm run dev`.
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Run `npm run check` to type-check, test, and build both applications.

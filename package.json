@@ -1,28 +1,23 @@
 {
-  "name": "lucid-pasteur",
+  "name": "fieldman",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "description": "Airsoft field management system",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "chart.js": "^4.5.1",
-    "date-fns": "^4.4.0",
-    "lucide-react": "^1.25.0",
-    "react": "^19.2.7",
-    "react-chartjs-2": "^5.3.1",
-    "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.1"
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev --workspace @fieldman/api\" \"npm run dev --workspace @fieldman/web\"",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "check": "npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.3",
-    "oxlint": "^1.71.0",
-    "vite": "^8.1.1"
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
