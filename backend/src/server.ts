@@ -17,6 +17,7 @@ import { SupabasePlayersRepository } from './modules/players/player.repository.j
 import { PlayerService } from './modules/players/player.service.js';
 import { SupabaseTabsRepository } from './modules/tabs/tab.repository.js';
 import { TabService } from './modules/tabs/tab.service.js';
+import { UserService } from './modules/users/user.service.js';
 
 const environment      = loadEnvironment();
 const supabase         = createSupabaseAdminClient(environment);
@@ -35,6 +36,7 @@ const app = createApp({
   inventoryService: new InventoryService(new SupabaseInventoryRepository(supabase)),
   analyticsService: new AnalyticsService(new SupabaseAnalyticsRepository(supabase)),
   paymentService:   new PaymentService(new SupabasePaymentsRepository(supabase), paymentGateway, tabsRepository),
+  userService:      new UserService(supabase),
 });
 
 const server = app.listen(environment.PORT, () => {

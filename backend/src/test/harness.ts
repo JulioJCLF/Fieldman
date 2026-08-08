@@ -8,6 +8,7 @@ import type { InventoryServicePort } from '../modules/inventory/inventory.servic
 import type { PaymentServicePort } from '../modules/payments/payment.service.js';
 import type { PlayerServicePort } from '../modules/players/player.service.js';
 import type { TabServicePort } from '../modules/tabs/tab.service.js';
+import type { UserServicePort } from '../modules/users/user.service.js';
 
 /** Cada serviço vira um objeto de mocks vi.fn() com a mesma forma do port. */
 type Mocked<T> = { [K in keyof T]: ReturnType<typeof vi.fn> };
@@ -19,6 +20,7 @@ export interface TestServices {
   inventoryService: Mocked<InventoryServicePort>;
   analyticsService: Mocked<AnalyticsServicePort>;
   paymentService: Mocked<PaymentServicePort>;
+  userService: Mocked<UserServicePort>;
 }
 
 function mockFromKeys<T extends object>(keys: (keyof T)[]): Mocked<T> {
@@ -40,6 +42,7 @@ export function buildTestApp(): { app: Express; services: TestServices } {
     inventoryService: mockFromKeys(['createProduct', 'listProducts', 'getProduct', 'updateProduct', 'adjustStock', 'recordSale', 'listSales', 'getRevenueSummary', 'getTopProducts', 'getTopCategories']),
     analyticsService: mockFromKeys(['getOverview', 'getMonthly', 'compareMonthAcrossYears', 'compareYears', 'getProjection']),
     paymentService:   mockFromKeys(['createPixForTab', 'getStatus', 'handleWebhook']),
+    userService:      mockFromKeys(['list', 'create', 'update', 'remove']),
   };
 
   const app = createApp({

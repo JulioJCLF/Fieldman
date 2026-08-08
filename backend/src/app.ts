@@ -13,6 +13,8 @@ import { createPlayerRouter } from './modules/players/player.routes.js';
 import type { PlayerServicePort } from './modules/players/player.service.js';
 import { createTabsForGameRouter, createTabsRouter } from './modules/tabs/tab.routes.js';
 import type { TabServicePort } from './modules/tabs/tab.service.js';
+import { createUserRouter } from './modules/users/user.routes.js';
+import type { UserServicePort } from './modules/users/user.service.js';
 import { failure, success } from './shared/api.js';
 import { errorHandler } from './shared/error-handler.js';
 
@@ -26,9 +28,10 @@ export interface AppDependencies {
   inventoryService: InventoryServicePort;
   analyticsService: AnalyticsServicePort;
   paymentService: PaymentServicePort;
+  userService: UserServicePort;
 }
 
-export function createApp({ corsOrigin, authenticate, playerService, gameService, tabService, inventoryService, analyticsService, paymentService }: AppDependencies): Express {
+export function createApp({ corsOrigin, authenticate, playerService, gameService, tabService, inventoryService, analyticsService, paymentService, userService }: AppDependencies): Express {
   const app = express();
 
   app.disable('x-powered-by');
@@ -50,6 +53,7 @@ export function createApp({ corsOrigin, authenticate, playerService, gameService
   app.use('/api/inventory', createInventoryRouter(inventoryService));
   app.use('/api/analytics', createAnalyticsRouter(analyticsService));
   app.use('/api/payments',  createPaymentRouter(paymentService));
+  app.use('/api/users',     createUserRouter(userService));
 
   app.use((_request, response) => {
     response.status(404).json(failure('Rota n\u00e3o encontrada.'));

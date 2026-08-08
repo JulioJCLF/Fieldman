@@ -8,16 +8,18 @@ import { InventoryPanel } from './features/inventory/components/InventoryPanel';
 import { PlayerQuickSearch } from './features/players/components/PlayerQuickSearch';
 import { PlayerRegistrationForm } from './features/players/components/PlayerRegistrationForm';
 import { PlayerSelfRegistrationPage } from './features/players/components/PlayerSelfRegistrationPage';
+import { UsersPanel } from './features/users/components/UsersPanel';
 import type { Player } from './features/players/types';
 import { formatCpf, formatPhone } from './features/players/validation';
 
-type View = 'operation' | 'snackbar' | 'store' | 'analytics';
+type View = 'operation' | 'snackbar' | 'store' | 'analytics' | 'users';
 
 const NAV_ITEMS: { view: View; label: string }[] = [
   { view: 'operation', label: 'Operação' },
   { view: 'snackbar', label: 'Lanchonete' },
   { view: 'store', label: 'Loja' },
   { view: 'analytics', label: 'Gestão' },
+  { view: 'users', label: 'Usuários' },
 ];
 
 export default function App() {
@@ -96,6 +98,7 @@ export default function App() {
         {view === 'snackbar' && <InventoryPanel channel="SNACKBAR" />}
         {view === 'store' && <InventoryPanel channel="STORE" />}
         {view === 'analytics' && <AnalyticsPanel />}
+        {view === 'users' && <UsersPanel />}
 
         {view === 'operation' && (
           <>
