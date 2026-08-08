@@ -12,20 +12,20 @@ interface Props {
 }
 
 export function ProductForm({ channel, onCreated, onCancel }: Props) {
-  const [name, setName]           = useState('');
-  const [category, setCategory]   = useState('');
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
   const [costPrice, setCostPrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
-  const [stockQty, setStockQty]   = useState('0');
-  const [error, setError]         = useState<string | null>(null);
-  const [loading, setLoading]     = useState(false);
+  const [stockQty, setStockQty] = useState('0');
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError(null);
 
-    const cost  = parseDecimal(costPrice);
-    const sale  = parseDecimal(salePrice);
+    const cost = parseDecimal(costPrice);
+    const sale = parseDecimal(salePrice);
     const stock = parseInt(stockQty, 10);
 
     if (!name.trim()) { setError('Informe o nome do produto.'); return; }
@@ -36,11 +36,11 @@ export function ProductForm({ channel, onCreated, onCancel }: Props) {
     setLoading(true);
     try {
       const product = await createProduct(channel, {
-        name:       name.trim(),
-        category:   category.trim() || 'Geral',
+        name: name.trim(),
+        category: category.trim() || 'Geral',
         cost_price: cost,
         sale_price: sale,
-        stock_qty:  stock,
+        stock_qty: stock,
       });
       onCreated(product);
     } catch (err) {

@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode;
 }
 
-const LABEL = 'block text-[10px] uppercase tracking-[0.14em] text-outline';
+const LABEL = 'block text-[10px] text-outline';
 
 export function Field({ label, htmlFor, hint, error, children }: Props) {
   return (

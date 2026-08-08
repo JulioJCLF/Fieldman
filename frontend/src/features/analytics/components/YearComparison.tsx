@@ -9,9 +9,9 @@ const CURRENT_YEAR = new Date().getUTCFullYear();
 const DEFAULT_YEARS = [CURRENT_YEAR - 2, CURRENT_YEAR - 1, CURRENT_YEAR];
 
 export function YearComparison() {
-  const [totals, setTotals]   = useState<YearTotal[]>([]);
+  const [totals, setTotals] = useState<YearTotal[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -24,7 +24,7 @@ export function YearComparison() {
 
   return (
     <div className="border border-outline-variant bg-surface-lowest p-5">
-      <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Comparativo entre anos</p>
+      <p className="text-xs font-bold text-primary">Comparativo entre anos</p>
 
       {loading && <p className="mt-4 text-xs text-outline">Carregando…</p>}
       {error && <p className="mt-4 border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
@@ -33,8 +33,8 @@ export function YearComparison() {
         <div className="mt-5">
           <BarChart
             bars={totals.map((t) => ({
-              label:     String(t.year),
-              value:     t.revenue,
+              label: String(t.year),
+              value: t.revenue,
               highlight: t.year === CURRENT_YEAR,
             }))}
           />

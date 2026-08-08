@@ -13,7 +13,7 @@ export function Card({ title, actions, className = '', children }: Props) {
     <div className={`rounded-xl border border-outline-variant bg-surface-lowest p-5 shadow-panel sm:p-6 ${className}`}>
       {(title || actions) && (
         <div className="mb-4 flex items-center justify-between gap-4 border-b border-outline-variant pb-4">
-          {title && <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">{title}</p>}
+          {title && <p className="text-xs font-bold text-primary">{title}</p>}
           {actions}
         </div>
       )}

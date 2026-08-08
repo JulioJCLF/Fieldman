@@ -20,7 +20,7 @@ export function SegmentedControl<T extends string>({ options, value, onChange }:
           type="button"
           onClick={() => onChange(option.value)}
           aria-pressed={value === option.value}
-          className={`rounded-lg border px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition ${
+          className={`rounded-lg border px-4 py-2 text-xs font-semibold transition ${
             value === option.value
               ? 'border-primary bg-primary/10 text-primary'
               : 'border-outline-variant bg-surface-lowest text-on-surface-variant hover:border-outline'

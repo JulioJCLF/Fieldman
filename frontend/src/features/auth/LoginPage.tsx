@@ -33,19 +33,19 @@ export function LoginPage() {
 
       <div className="relative w-full max-w-sm rounded-2xl border border-outline-variant bg-surface-lowest p-7 shadow-panel-lg sm:p-8">
         <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-lg border border-primary bg-primary text-sm font-black text-on-primary">FM</div>
+          <div className="grid h-10 w-10 place-items-center rounded-lg border border-primary bg-primary text-sm font-semibold text-on-primary">FM</div>
           <div>
-            <p className="text-xs font-bold tracking-[0.24em] text-primary">FIELD//MAN</p>
-            <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-outline">Acesso operacional</p>
+            <p className="text-xs font-bold text-primary">FIELD//MAN</p>
+            <p className="mt-0.5 text-[10px] text-outline">Acesso operacional</p>
           </div>
         </div>
 
-        <h1 className="mt-7 text-2xl font-black uppercase tracking-tight text-on-surface">Entrar</h1>
+        <h1 className="mt-7 text-2xl font-semibold tracking-tight text-on-surface">Entrar</h1>
         <p className="mt-1 text-sm text-on-surface-variant">Use suas credenciais de staff para acessar o console.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label htmlFor="email" className="text-[10px] font-bold uppercase tracking-[0.16em] text-outline">
+            <label htmlFor="email" className="text-[10px] font-bold text-outline">
               E-mail
             </label>
             <input
@@ -61,7 +61,7 @@ export function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="text-[10px] font-bold uppercase tracking-[0.16em] text-outline">
+            <label htmlFor="password" className="text-[10px] font-bold text-outline">
               Senha
             </label>
             <input
@@ -85,7 +85,7 @@ export function LoginPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-lg border border-primary bg-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-on-primary shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full rounded-lg border border-primary bg-primary px-4 py-2.5 text-xs font-semibold text-on-primary shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {submitting ? 'Entrando…' : 'Entrar'}
           </button>

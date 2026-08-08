@@ -5,7 +5,7 @@ interface Props {
 }
 
 const TYPE_LABEL: Record<string, string> = {
-  OPEN:    'JOGO ABERTO',
+  OPEN: 'JOGO ABERTO',
   PRIVATE: 'JOGO FECHADO',
 };
 
@@ -23,7 +23,7 @@ export function GameStatusBanner({ game }: Props) {
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
         </span>
         <div className="">
-          <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+          <span className="text-xs font-bold text-primary">
             {TYPE_LABEL[game.type] ?? game.type}
           </span>
           <span className="ml-3 text-xs text-on-surface-variant">
@@ -31,7 +31,7 @@ export function GameStatusBanner({ game }: Props) {
           </span>
         </div>
       </div>
-      <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-primary/70">
+      <span className="text-[10px] font-bold text-primary/70">
         EM ANDAMENTO
       </span>
     </div>

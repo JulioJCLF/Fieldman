@@ -12,13 +12,13 @@ interface Props {
 
 const MODALITY_BADGE: Record<string, string> = {
   EQUIPPED: 'EQ',
-  RENTAL:   'AL',
+  RENTAL: 'AL',
 };
 
 const ITEM_TYPE_SHORT: Record<string, string> = {
-  REFILL:   'Recarga',
+  REFILL: 'Recarga',
   SNACKBAR: 'Lanches',
-  STORE:    'Loja',
+  STORE: 'Loja',
 };
 
 function formatCurrency(value: number): string {
@@ -26,17 +26,17 @@ function formatCurrency(value: number): string {
 }
 
 export function TabCard({ tab, onUpdated }: Props) {
-  const [expanded, setExpanded]             = useState(false);
-  const [showRefill, setShowRefill]         = useState(false);
-  const [showCheckout, setShowCheckout]     = useState(false);
-  const [payingRefill, setPayingRefill]     = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const [showRefill, setShowRefill] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [payingRefill, setPayingRefill] = useState<string | null>(null);
   const [refillPayError, setRefillPayError] = useState<string | null>(null);
 
-  const openRefills   = tab.refills.filter((r) => r.payment_status === 'OPEN');
-  const entryOwed     = tab.entry_status === 'PENDING' ? Number(tab.entry_fee) : 0;
-  const refillsOwed   = openRefills.reduce((sum, r) => sum + Number(r.total_price), 0);
-  const totalPending  = entryOwed + refillsOwed;
-  const isPaidOff     = totalPending <= 0;
+  const openRefills = tab.refills.filter((r) => r.payment_status === 'OPEN');
+  const entryOwed = tab.entry_status === 'PENDING' ? Number(tab.entry_fee) : 0;
+  const refillsOwed = openRefills.reduce((sum, r) => sum + Number(r.total_price), 0);
+  const totalPending = entryOwed + refillsOwed;
+  const isPaidOff = totalPending <= 0;
 
   function applyRefill(refill: Refill): TabWithRefills {
     return { ...tab, refills: [...tab.refills, refill] };
@@ -125,7 +125,7 @@ export function TabCard({ tab, onUpdated }: Props) {
             {/* Recargas */}
             {tab.refills.length > 0 && (
               <div className="space-y-1.5">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Recargas / Itens</p>
+                <p className="text-[10px] text-outline">Recargas / Itens</p>
                 {tab.refills.map((r) => (
                   <div key={r.id} className="flex items-center justify-between gap-2 text-xs">
                     <span className="text-on-surface-variant">
@@ -161,7 +161,7 @@ export function TabCard({ tab, onUpdated }: Props) {
               <button
                 type="button"
                 onClick={() => setShowRefill(true)}
-                className="border border-outline-variant px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant hover:border-outline hover:text-on-surface"
+                className="border border-outline-variant px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:border-outline hover:text-on-surface"
               >
                 + Recarga
               </button>
@@ -169,7 +169,7 @@ export function TabCard({ tab, onUpdated }: Props) {
                 <button
                   type="button"
                   onClick={() => setShowCheckout(true)}
-                  className="border border-primary/60 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-primary hover:border-primary hover:bg-primary/10"
+                  className="border border-primary/60 px-3 py-1.5 text-xs font-bold text-primary hover:border-primary hover:bg-primary/10"
                 >
                   Fechar comanda · {formatCurrency(totalPending)}
                 </button>

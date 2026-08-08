@@ -13,18 +13,18 @@ interface Props {
 type Period = 'day' | 'month' | 'year';
 
 const PERIOD_LABELS: Record<Period, string> = {
-  day:   'Hoje',
+  day: 'Hoje',
   month: 'Mês',
-  year:  'Ano',
+  year: 'Ano',
 };
 
 export function ReportsPanel({ channel, refreshKey }: Props) {
-  const [period, setPeriod]         = useState<Period>('month');
-  const [summary, setSummary]       = useState<RevenueSummary | null>(null);
-  const [topProducts, setTopProducts]   = useState<TopProduct[]>([]);
+  const [period, setPeriod] = useState<Period>('month');
+  const [summary, setSummary] = useState<RevenueSummary | null>(null);
+  const [topProducts, setTopProducts] = useState<TopProduct[]>([]);
   const [topCategories, setTopCategories] = useState<TopCategory[]>([]);
-  const [loading, setLoading]       = useState(true);
-  const [error, setError]           = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -58,7 +58,7 @@ export function ReportsPanel({ channel, refreshKey }: Props) {
       <div className="flex gap-2">
         {(Object.keys(PERIOD_LABELS) as Period[]).map((p) => (
           <button key={p} type="button" onClick={() => setPeriod(p)}
-            className={`border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+            className={`border px-4 py-2 text-xs font-bold transition ${
               period === p ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant text-on-surface-variant hover:border-outline'
             }`}>
             {PERIOD_LABELS[p]}
@@ -74,19 +74,19 @@ export function ReportsPanel({ channel, refreshKey }: Props) {
           {/* Cartões de faturamento */}
           <div className="grid grid-cols-2 gap-px border border-outline-variant bg-primary-container sm:grid-cols-4">
             <div className="bg-surface-low p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Faturamento</p>
+              <p className="text-[10px] text-outline">Faturamento</p>
               <p className="mt-1 text-lg font-bold text-primary">{formatCurrency(summary.revenue)}</p>
             </div>
             <div className="bg-surface-low p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Lucro</p>
+              <p className="text-[10px] text-outline">Lucro</p>
               <p className="mt-1 text-lg font-bold text-on-surface">{formatCurrency(summary.profit)}</p>
             </div>
             <div className="bg-surface-low p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Unidades</p>
+              <p className="text-[10px] text-outline">Unidades</p>
               <p className="mt-1 text-lg font-bold text-on-surface">{summary.units_sold}</p>
             </div>
             <div className="bg-surface-low p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Vendas</p>
+              <p className="text-[10px] text-outline">Vendas</p>
               <p className="mt-1 text-lg font-bold text-on-surface">{summary.sales_count}</p>
             </div>
           </div>
@@ -94,7 +94,7 @@ export function ReportsPanel({ channel, refreshKey }: Props) {
           <div className="grid gap-5 lg:grid-cols-2">
             {/* Produtos mais vendidos */}
             <div className="border border-outline-variant bg-surface-lowest p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Mais vendidos</p>
+              <p className="text-xs font-bold text-primary">Mais vendidos</p>
               {topProducts.length === 0 ? (
                 <p className="mt-3 text-xs text-outline">Sem vendas no período.</p>
               ) : (
@@ -113,7 +113,7 @@ export function ReportsPanel({ channel, refreshKey }: Props) {
 
             {/* Por categoria */}
             <div className="border border-outline-variant bg-surface-lowest p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Por categoria</p>
+              <p className="text-xs font-bold text-primary">Por categoria</p>
               {topCategories.length === 0 ? (
                 <p className="mt-3 text-xs text-outline">Sem vendas no período.</p>
               ) : (

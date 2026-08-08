@@ -11,19 +11,19 @@ interface Props {
 }
 
 export function RefillModal({ tabId, onAdded, onClose }: Props) {
-  const [itemType, setItemType]           = useState<ItemType>('REFILL');
-  const [description, setDescription]     = useState('');
-  const [quantity, setQuantity]           = useState('1');
-  const [totalPrice, setTotalPrice]       = useState('');
+  const [itemType, setItemType] = useState<ItemType>('REFILL');
+  const [description, setDescription] = useState('');
+  const [quantity, setQuantity] = useState('1');
+  const [totalPrice, setTotalPrice] = useState('');
   const [paymentStatus, setPaymentStatus] = useState<PaymentStatus>('OPEN');
-  const [error, setError]                 = useState<string | null>(null);
-  const [loading, setLoading]             = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError(null);
 
-    const qty   = parseInt(quantity, 10);
+    const qty = parseInt(quantity, 10);
     const price = parseFloat(totalPrice.replace(',', '.'));
 
     if (!description.trim()) { setError('Informe a descrição do item.'); return; }
@@ -33,10 +33,10 @@ export function RefillModal({ tabId, onAdded, onClose }: Props) {
     setLoading(true);
     try {
       const refill = await addRefill(tabId, {
-        item_type:      itemType,
-        description:    description.trim(),
-        quantity:       qty,
-        total_price:    price,
+        item_type: itemType,
+        description: description.trim(),
+        quantity: qty,
+        total_price: price,
         payment_status: paymentStatus,
       });
       onAdded(refill);

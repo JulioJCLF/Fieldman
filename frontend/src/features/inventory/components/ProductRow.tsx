@@ -11,9 +11,9 @@ interface Props {
 }
 
 export function ProductRow({ channel, product, onUpdated }: Props) {
-  const [delta, setDelta]     = useState('');
+  const [delta, setDelta] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const margin = product.sale_price - product.cost_price;
   const lowStock = product.stock_qty <= 5;
@@ -40,7 +40,7 @@ export function ProductRow({ channel, product, onUpdated }: Props) {
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="truncate text-sm font-bold text-on-surface">{product.name}</p>
-          <p className="mt-0.5 text-[10px] uppercase tracking-[0.12em] text-outline">{product.category}</p>
+          <p className="mt-0.5 text-[10px] text-outline">{product.category}</p>
         </div>
         <div className="shrink-0 text-right text-xs">
           <p className="text-on-surface-variant">{formatCurrency(product.sale_price)}</p>

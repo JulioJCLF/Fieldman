@@ -12,15 +12,15 @@ interface Props {
 }
 
 export function CheckoutModal({ tab, onCheckedOut, onClose }: Props) {
-  const [method, setMethod]   = useState<PaymentMethod>('PIX');
+  const [method, setMethod] = useState<PaymentMethod>('PIX');
   const [pixMode, setPixMode] = useState(false);
-  const [error, setError]     = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const openRefills  = tab.refills.filter((r) => r.payment_status === 'OPEN');
-  const entryOwed    = tab.entry_status === 'PENDING' ? Number(tab.entry_fee) : 0;
-  const refillsOwed  = openRefills.reduce((sum, r) => sum + Number(r.total_price), 0);
-  const total        = entryOwed + refillsOwed;
+  const openRefills = tab.refills.filter((r) => r.payment_status === 'OPEN');
+  const entryOwed = tab.entry_status === 'PENDING' ? Number(tab.entry_fee) : 0;
+  const refillsOwed = openRefills.reduce((sum, r) => sum + Number(r.total_price), 0);
+  const total = entryOwed + refillsOwed;
 
   async function handleConfirm() {
     // PIX passa pelo gateway; Dinheiro/Cartão são confirmação manual imediata.
@@ -69,13 +69,13 @@ export function CheckoutModal({ tab, onCheckedOut, onClose }: Props) {
                 </div>
               ))}
               <div className="flex justify-between bg-surface-container px-4 py-3">
-                <span className="font-bold uppercase tracking-[0.14em] text-primary">Total</span>
+                <span className="font-bold text-primary">Total</span>
                 <span className="text-xl font-bold text-primary">{formatCurrency(total)}</span>
               </div>
             </div>
 
             <div>
-              <p className="text-[10px] uppercase tracking-[0.14em] text-outline">Forma de pagamento</p>
+              <p className="text-[10px] text-outline">Forma de pagamento</p>
               <div className="mt-2">
                 <SegmentedControl
                   value={method}

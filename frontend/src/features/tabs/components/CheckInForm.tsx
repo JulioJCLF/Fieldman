@@ -15,20 +15,20 @@ type PlayerMode = 'registered' | 'guest';
 
 const MODALITY_LABELS: Record<TabModality, string> = {
   EQUIPPED: 'Equipado',
-  RENTAL:   'Aluguel',
+  RENTAL: 'Aluguel',
 };
 
 export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
-  const [mode, setMode]               = useState<PlayerMode>('registered');
+  const [mode, setMode] = useState<PlayerMode>('registered');
   const [searchQuery, setSearchQuery] = useState('');
   const [foundPlayer, setFoundPlayer] = useState<Player | null>(null);
-  const [searching, setSearching]     = useState(false);
+  const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
-  const [guestName, setGuestName]     = useState('');
-  const [modality, setModality]       = useState<TabModality>('RENTAL');
-  const [entryFee, setEntryFee]       = useState('');
+  const [guestName, setGuestName] = useState('');
+  const [modality, setModality] = useState<TabModality>('RENTAL');
+  const [entryFee, setEntryFee] = useState('');
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitting, setSubmitting]   = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   async function handleSearch() {
     const q = searchQuery.trim();
@@ -93,11 +93,11 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
     setSubmitting(true);
     try {
       const tab = await createTab(gameId, {
-        player_id:   mode === 'registered' ? foundPlayer!.id : undefined,
-        guest_name:  mode === 'guest'      ? guestName.trim() : undefined,
+        player_id: mode === 'registered' ? foundPlayer!.id : undefined,
+        guest_name: mode === 'guest' ? guestName.trim() : undefined,
         player_name: mode === 'registered' ? foundPlayer!.name : guestName.trim(),
         modality,
-        entry_fee:   fee,
+        entry_fee: fee,
       });
       onCheckedIn(tab);
     } catch (err) {
@@ -109,7 +109,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="border border-outline-variant bg-surface-lowest p-5 sm:p-6">
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+      <p className="text-xs font-bold text-primary">
         Novo check-in
       </p>
 
@@ -121,7 +121,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
               key={opt}
               type="button"
               onClick={() => handleModeChange(opt)}
-              className={`border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`border px-4 py-2 text-xs font-bold transition ${
                 mode === opt
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-outline-variant text-on-surface-variant hover:border-outline'
@@ -135,7 +135,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
         {/* Busca de jogador cadastrado */}
         {mode === 'registered' && (
           <div>
-            <label className="block text-[10px] uppercase tracking-[0.14em] text-outline">
+            <label className="block text-[10px] text-outline">
               Buscar por nº cadastro, CPF ou telefone
             </label>
             <div className="mt-2 flex gap-2">
@@ -151,7 +151,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
                 type="button"
                 onClick={handleSearch}
                 disabled={searching || !searchQuery.trim()}
-                className="border border-outline-variant px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant hover:border-outline disabled:opacity-40"
+                className="border border-outline-variant px-4 py-2 text-xs font-bold text-on-surface-variant hover:border-outline disabled:opacity-40"
               >
                 {searching ? '…' : 'Buscar'}
               </button>
@@ -175,7 +175,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
         {/* Nome do avulso */}
         {mode === 'guest' && (
           <div>
-            <label htmlFor="guest-name" className="block text-[10px] uppercase tracking-[0.14em] text-outline">
+            <label htmlFor="guest-name" className="block text-[10px] text-outline">
               Nome do avulso
             </label>
             <input
@@ -191,14 +191,14 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
 
         {/* Modalidade */}
         <fieldset>
-          <legend className="text-[10px] uppercase tracking-[0.14em] text-outline">
+          <legend className="text-[10px] text-outline">
             Modalidade
           </legend>
           <div className="mt-2 flex gap-3">
             {(['EQUIPPED', 'RENTAL'] as TabModality[]).map((opt) => (
               <label
                 key={opt}
-                className={`flex cursor-pointer items-center gap-2 border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                className={`flex cursor-pointer items-center gap-2 border px-4 py-2.5 text-xs font-bold transition ${
                   modality === opt
                     ? 'border-primary bg-primary/10 text-primary'
                     : 'border-outline-variant text-on-surface-variant hover:border-outline'
@@ -220,7 +220,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
 
         {/* Taxa de entrada */}
         <div>
-          <label htmlFor="entry-fee" className="block text-[10px] uppercase tracking-[0.14em] text-outline">
+          <label htmlFor="entry-fee" className="block text-[10px] text-outline">
             Taxa de entrada (R$)
           </label>
           <input
@@ -245,14 +245,14 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
             type="button"
             onClick={onCancel}
             disabled={submitting}
-            className="border border-outline-variant px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant hover:border-outline hover:text-on-surface disabled:opacity-40"
+            className="border border-outline-variant px-4 py-2 text-xs font-bold text-on-surface-variant hover:border-outline hover:text-on-surface disabled:opacity-40"
           >
             Cancelar
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="border border-primary bg-primary px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-primary hover:bg-primary disabled:opacity-40"
+            className="border border-primary bg-primary px-5 py-2 text-xs font-bold text-on-primary hover:bg-primary disabled:opacity-40"
           >
             {submitting ? 'Abrindo…' : 'Abrir comanda'}
           </button>

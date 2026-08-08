@@ -16,11 +16,11 @@ function formatCurrency(value: number): string {
 }
 
 export function PixPayment({ tabId, onApproved, onCancel }: Props) {
-  const [charge, setCharge]   = useState<PixCharge | null>(null);
-  const [status, setStatus]   = useState<'creating' | 'waiting' | 'approved' | 'rejected'>('creating');
-  const [error, setError]     = useState<string | null>(null);
-  const [copied, setCopied]   = useState(false);
-  const approvedRef           = useRef(false);
+  const [charge, setCharge] = useState<PixCharge | null>(null);
+  const [status, setStatus] = useState<'creating' | 'waiting' | 'approved' | 'rejected'>('creating');
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const approvedRef = useRef(false);
 
   // Cria a cobrança PIX ao montar.
   useEffect(() => {
@@ -85,7 +85,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
       {charge && status === 'waiting' && (
         <>
           <div className="flex items-center justify-between border border-outline-variant bg-surface-low px-4 py-3">
-            <span className="text-[10px] uppercase tracking-[0.12em] text-outline">Valor</span>
+            <span className="text-[10px] text-outline">Valor</span>
             <span className="text-lg font-bold text-primary">{formatCurrency(charge.amount)}</span>
           </div>
 
@@ -96,7 +96,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
             </div>
           ) : (
             <div className="border border-dashed border-outline-variant bg-surface-lowest p-4 text-center">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">
+              <p className="text-[10px] text-outline">
                 Código copia-e-cola
               </p>
               <p className="mt-2 break-all text-[11px] leading-5 text-on-surface-variant">{charge.qr_code}</p>
@@ -106,7 +106,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
           <button
             type="button"
             onClick={handleCopy}
-            className="w-full border border-primary/60 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary/10"
+            className="w-full border border-primary/60 py-2.5 text-xs font-bold text-primary transition hover:bg-primary/10"
           >
             {copied ? 'Copiado ✓' : 'Copiar código PIX'}
           </button>
@@ -119,7 +119,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
           <button
             type="button"
             onClick={onCancel}
-            className="w-full border border-outline-variant py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant hover:border-outline"
+            className="w-full border border-outline-variant py-2 text-xs font-bold text-on-surface-variant hover:border-outline"
           >
             Cancelar
           </button>
@@ -129,7 +129,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
       {status === 'approved' && (
         <div className="flex flex-col items-center gap-3 py-6">
           <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-primary text-2xl text-primary">✓</div>
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">Pagamento aprovado</p>
+          <p className="text-sm font-bold text-primary">Pagamento aprovado</p>
         </div>
       )}
 
@@ -141,7 +141,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
           <button
             type="button"
             onClick={onCancel}
-            className="w-full border border-outline-variant py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant hover:border-outline"
+            className="w-full border border-outline-variant py-2 text-xs font-bold text-on-surface-variant hover:border-outline"
           >
             Voltar
           </button>

@@ -13,15 +13,15 @@ interface Props {
 /** Ponto de venda simplificado: seleciona produto, quantidade e registra venda direta. */
 export function SalePosForm({ channel, products, onSold }: Props) {
   const [productId, setProductId] = useState('');
-  const [quantity, setQuantity]   = useState('1');
-  const [error, setError]         = useState<string | null>(null);
-  const [feedback, setFeedback]   = useState<string | null>(null);
-  const [loading, setLoading]     = useState(false);
+  const [quantity, setQuantity] = useState('1');
+  const [error, setError] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const available = products.filter((p) => p.active && p.stock_qty > 0);
-  const selected  = products.find((p) => p.id === productId) ?? null;
-  const qty       = parseInt(quantity, 10);
-  const total     = selected && !isNaN(qty) ? selected.sale_price * qty : 0;
+  const selected = products.find((p) => p.id === productId) ?? null;
+  const qty = parseInt(quantity, 10);
+  const total = selected && !isNaN(qty) ? selected.sale_price * qty : 0;
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -47,11 +47,11 @@ export function SalePosForm({ channel, products, onSold }: Props) {
   }
 
   const inputClass = 'mt-2 w-full border border-outline-variant bg-surface-low px-3 py-2 text-sm text-on-surface outline-none focus:border-primary/50';
-  const labelClass = 'block text-[10px] uppercase tracking-[0.14em] text-outline';
+  const labelClass = 'block text-[10px] text-outline';
 
   return (
     <form onSubmit={handleSubmit} className="border border-outline-variant bg-surface-lowest p-5 sm:p-6">
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+      <p className="text-xs font-bold text-primary">
         Registrar venda
       </p>
 
@@ -79,7 +79,7 @@ export function SalePosForm({ channel, products, onSold }: Props) {
               <input id="sale-qty" type="number" min="1" value={quantity} onChange={(e) => setQuantity(e.target.value)} className={inputClass} />
             </div>
             <div className="border border-outline-variant bg-surface-low px-4 py-2.5 text-right">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Total</p>
+              <p className="text-[10px] text-outline">Total</p>
               <p className="mt-0.5 text-lg font-bold text-primary">{formatCurrency(total)}</p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export function SalePosForm({ channel, products, onSold }: Props) {
 
           <div className="flex justify-end border-t border-outline-variant pt-4">
             <button type="submit" disabled={loading}
-              className="border border-primary bg-primary px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-primary hover:bg-primary disabled:opacity-40">
+              className="border border-primary bg-primary px-5 py-2 text-xs font-bold text-on-primary hover:bg-primary disabled:opacity-40">
               {loading ? 'Registrando…' : 'Confirmar venda'}
             </button>
           </div>

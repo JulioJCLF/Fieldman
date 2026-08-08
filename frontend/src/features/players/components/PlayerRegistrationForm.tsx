@@ -100,7 +100,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
     <section aria-labelledby="registration-title" className="border border-outline-variant bg-surface-lowest p-5 shadow-panel sm:p-7">
       <div className="mb-7 flex flex-col gap-3 border-b border-outline-variant pb-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Cadastro ágil // nova ficha</p>
+          <p className="text-xs font-bold text-primary">Cadastro ágil // nova ficha</p>
           <h2 id="registration-title" className="mt-2 text-2xl font-bold tracking-tight text-on-surface">
             Novo jogador
           </h2>
@@ -108,7 +108,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
             Preencha somente o essencial. O número de cadastro é atribuído pelo servidor.
           </p>
         </div>
-        <span className="w-fit border border-outline-variant px-2.5 py-1 text-[10px] font-bold tracking-[0.14em] text-on-surface-variant">
+        <span className="w-fit border border-outline-variant px-2.5 py-1 text-[10px] font-bold text-on-surface-variant">
           API SECURE
         </span>
       </div>
@@ -116,7 +116,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
       <form noValidate onSubmit={handleSubmit} className="space-y-5">
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="sm:col-span-2">
-            <label htmlFor="player-name" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+            <label htmlFor="player-name" className="text-xs font-bold text-on-surface-variant">
               Nome completo <span aria-hidden="true" className="text-primary">*</span>
             </label>
             <input
@@ -136,7 +136,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
           </div>
 
           <div>
-            <label htmlFor="player-cpf" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+            <label htmlFor="player-cpf" className="text-xs font-bold text-on-surface-variant">
               CPF <span aria-hidden="true" className="text-primary">*</span>
             </label>
             <input
@@ -157,7 +157,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
           </div>
 
           <div>
-            <label htmlFor="player-phone" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+            <label htmlFor="player-phone" className="text-xs font-bold text-on-surface-variant">
               Telefone <span aria-hidden="true" className="text-primary">*</span>
             </label>
             <input
@@ -178,7 +178,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
           </div>
 
           <div>
-            <label htmlFor="player-email" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+            <label htmlFor="player-email" className="text-xs font-bold text-on-surface-variant">
               E-mail <span aria-hidden="true" className="text-primary">*</span>
             </label>
             <input
@@ -198,7 +198,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
           </div>
 
           <div>
-            <label htmlFor="player-birth-date" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+            <label htmlFor="player-birth-date" className="text-xs font-bold text-on-surface-variant">
               Data de nascimento <span aria-hidden="true" className="text-primary">*</span>
             </label>
             <input
@@ -219,7 +219,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
           </div>
 
           <div>
-            <label htmlFor="player-client-type" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+            <label htmlFor="player-client-type" className="text-xs font-bold text-on-surface-variant">
               Participação mais comum
             </label>
             <select
@@ -238,7 +238,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
         </div>
 
         <div>
-          <label htmlFor="player-profile" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">
+          <label htmlFor="player-profile" className="text-xs font-bold text-on-surface-variant">
             Perfil ou observação <span className="font-normal text-outline">(opcional)</span>
           </label>
           <textarea
@@ -294,7 +294,7 @@ export function PlayerRegistrationForm({ onRegistered }: PlayerRegistrationFormP
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-h-[3rem] w-full items-center justify-center bg-primary px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30 disabled:cursor-not-allowed disabled:bg-primary/50 sm:w-auto"
+          className="inline-flex min-h-[3rem] w-full items-center justify-center bg-primary px-5 py-3 text-xs font-semibold text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30 disabled:cursor-not-allowed disabled:bg-primary/50 sm:w-auto"
         >
           {isSubmitting ? 'Cadastrando…' : 'Cadastrar jogador'}
         </button>

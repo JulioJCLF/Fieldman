@@ -10,10 +10,10 @@ interface Props {
 }
 
 export function CheckInSection({ gameId }: Props) {
-  const [tabs, setTabs]           = useState<TabWithRefills[]>([]);
-  const [showForm, setShowForm]   = useState(false);
-  const [loading, setLoading]     = useState(true);
-  const [error, setError]         = useState<string | null>(null);
+  const [tabs, setTabs] = useState<TabWithRefills[]>([]);
+  const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -40,13 +40,13 @@ export function CheckInSection({ gameId }: Props) {
   }
 
   const equipped = tabs.filter((t) => t.modality === 'EQUIPPED').length;
-  const rental   = tabs.filter((t) => t.modality === 'RENTAL').length;
+  const rental = tabs.filter((t) => t.modality === 'RENTAL').length;
 
   return (
     <section className="mt-8 border-t border-outline-variant pt-8">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+          <p className="text-xs font-bold text-primary">
             Check-in · Comandas
           </p>
           {tabs.length > 0 && (
@@ -59,7 +59,7 @@ export function CheckInSection({ gameId }: Props) {
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
-            className="border border-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-on-primary"
+            className="border border-primary px-4 py-2 text-xs font-bold text-primary transition hover:bg-primary hover:text-on-primary"
           >
             + Novo check-in
           </button>

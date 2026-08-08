@@ -26,10 +26,10 @@ function rangeForPeriod(period: Period): { from: string; to: string } {
 }
 
 export function OverviewCards() {
-  const [period, setPeriod]   = useState<Period>('month');
-  const [report, setReport]   = useState<OverviewReport | null>(null);
+  const [period, setPeriod] = useState<Period>('month');
+  const [report, setReport] = useState<OverviewReport | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -47,11 +47,11 @@ export function OverviewCards() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Visão geral</p>
+        <p className="text-xs font-bold text-primary">Visão geral</p>
         <div className="flex gap-2">
           {(Object.keys(PERIOD_LABELS) as Period[]).map((p) => (
             <button key={p} type="button" onClick={() => setPeriod(p)}
-              className={`border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] transition ${
+              className={`border px-3 py-1.5 text-xs font-bold transition ${
                 period === p ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant text-on-surface-variant hover:border-outline'
               }`}>
               {PERIOD_LABELS[p]}
@@ -66,8 +66,8 @@ export function OverviewCards() {
       {!loading && !error && report && (
         <>
           <div className="border border-primary/30 bg-primary/5 p-5">
-            <p className="text-[10px] uppercase tracking-[0.14em] text-outline">Faturamento total</p>
-            <p className="mt-1 text-3xl font-black text-primary">{formatCurrency(report.revenue.total)}</p>
+            <p className="text-[10px] text-outline">Faturamento total</p>
+            <p className="mt-1 text-3xl font-semibold text-primary">{formatCurrency(report.revenue.total)}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-px border border-outline-variant bg-primary-container sm:grid-cols-3 lg:grid-cols-5">
@@ -79,7 +79,7 @@ export function OverviewCards() {
               ['Loja', report.revenue.store],
             ].map(([label, value]) => (
               <div key={label as string} className="bg-surface-low p-4">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-outline">{label}</p>
+                <p className="text-[10px] text-outline">{label}</p>
                 <p className="mt-1 text-sm font-bold text-on-surface">{formatCurrency(value as number)}</p>
               </div>
             ))}
@@ -93,7 +93,7 @@ export function OverviewCards() {
               ['Recargas', report.counts.refills],
             ].map(([label, value]) => (
               <div key={label as string} className="bg-surface-low p-4">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-outline">{label}</p>
+                <p className="text-[10px] text-outline">{label}</p>
                 <p className="mt-1 text-xl font-bold text-on-surface">{value as number}</p>
               </div>
             ))}

@@ -141,14 +141,14 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
   return (
     <section aria-labelledby="quick-search-title" className="border border-outline-variant bg-surface-lowest p-5 text-on-surface shadow-panel sm:p-7">
       <div className="mb-6 border-b border-outline-variant pb-5">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Recepção // consulta</p>
+        <p className="text-xs font-bold text-primary">Recepção // consulta</p>
         <h2 id="quick-search-title" className="mt-2 text-2xl font-bold tracking-tight">Busca rápida para check-in</h2>
         <p className="mt-2 text-sm leading-6 text-on-surface-variant">Localize uma ficha existente sem navegar por listas.</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-[minmax(10rem,0.7fr)_minmax(0,1.3fr)]">
         <div>
-          <label htmlFor="player-search-field" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Buscar por</label>
+          <label htmlFor="player-search-field" className="text-xs font-bold text-on-surface-variant">Buscar por</label>
           <select
             id="player-search-field"
             value={searchField}
@@ -162,7 +162,7 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
         </div>
 
         <div>
-          <label htmlFor="player-search-query" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Consulta exata</label>
+          <label htmlFor="player-search-query" className="text-xs font-bold text-on-surface-variant">Consulta exata</label>
           <input
             id="player-search-query"
             type="text"
@@ -192,7 +192,7 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
         <div className="mt-4 border border-primary/40 bg-surface-low p-4 text-on-surface">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
+              <p className="text-xs font-bold text-primary">
                 Cadastro #{searchState.player.registration_number}
               </p>
               <p className="mt-2 text-lg font-semibold text-on-surface">{searchState.player.name}</p>
@@ -203,7 +203,7 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
             <button
               type="button"
               onClick={() => onSelect(searchState.player)}
-              className="min-h-[3rem] bg-primary px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30"
+              className="min-h-[3rem] bg-primary px-4 py-2 text-xs font-semibold text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30"
             >
               Selecionar para check-in
             </button>

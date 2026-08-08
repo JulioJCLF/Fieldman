@@ -77,16 +77,16 @@ export function PlayerSelfRegistrationPage() {
     return (
       <main className="grid min-h-screen place-items-center overflow-hidden bg-surface px-4 py-10 text-on-surface">
         <section className="w-full max-w-xl border border-primary/40 bg-surface-container p-7 shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:p-10">
-          <p className="text-xs font-bold tracking-[0.24em] text-primary">FIELD//MAN · REGISTRO CONFIRMADO</p>
+          <p className="text-xs font-bold text-primary">FIELD//MAN · REGISTRO CONFIRMADO</p>
           <div className="my-7 h-px bg-gradient-to-r from-primary via-primary/20 to-transparent" />
-          <h1 className="text-3xl font-black uppercase tracking-tight text-on-surface sm:text-4xl">Cadastro transmitido.</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-on-surface sm:text-4xl">Cadastro transmitido.</h1>
           <p className="mt-4 max-w-md text-base leading-7 text-on-surface-variant">Sua ficha foi criada com sucesso. Informe o número abaixo na recepção quando chegar ao campo.</p>
           <div className="mt-8 border border-primary/30 bg-surface-container p-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-primary">Identificação do jogador</p>
-            <p className="mt-2 text-4xl font-black tracking-[0.08em] text-on-surface">#{state.player.registration_number}</p>
+            <p className="text-xs text-primary">Identificação do jogador</p>
+            <p className="mt-2 text-4xl font-semibold text-on-surface">#{state.player.registration_number}</p>
             <p className="mt-3 text-sm text-on-surface-variant">{state.player.name}</p>
           </div>
-          <button type="button" onClick={reset} className="mt-8 min-h-[3.15rem] border border-outline px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-on-surface transition hover:border-primary hover:bg-primary hover:text-on-primary focus:outline-none focus:ring-2 focus:ring-primary">
+          <button type="button" onClick={reset} className="mt-8 min-h-[3.15rem] border border-outline px-5 py-3 text-xs font-bold text-on-surface transition hover:border-primary hover:bg-primary hover:text-on-primary focus:outline-none focus:ring-2 focus:ring-primary">
             Novo cadastro
           </button>
         </section>
@@ -100,10 +100,10 @@ export function PlayerSelfRegistrationPage() {
       <div className="pointer-events-none fixed inset-x-0 top-0 h-1 bg-primary" />
       <div className="relative mx-auto grid min-h-screen max-w-6xl lg:grid-cols-[0.86fr_1.14fr]">
         <aside className="border-b border-outline-variant bg-surface-lowest px-6 py-10 sm:px-10 lg:border-b-0 lg:border-r lg:px-12 lg:py-16">
-          <p className="text-xs font-bold tracking-[0.24em] text-primary">FIELD//MAN</p>
+          <p className="text-xs font-bold text-primary">FIELD//MAN</p>
           <div className="mt-14 max-w-sm">
-            <p className="text-xs uppercase tracking-[0.18em] text-outline">Acesso de jogador · 01</p>
-            <h1 className="mt-4 text-4xl font-black uppercase leading-[0.92] tracking-tight text-on-surface sm:text-5xl">Prepare-se<span className="block text-primary">para o campo.</span></h1>
+            <p className="text-xs text-outline">Acesso de jogador · 01</p>
+            <h1 className="mt-4 text-4xl font-semibold leading-[0.92] tracking-tight text-on-surface sm:text-5xl">Prepare-se<span className="block text-primary">para o campo.</span></h1>
             <p className="mt-7 text-base leading-7 text-on-surface-variant">Complete seu cadastro antes do jogo. Na chegada, a recepção localiza sua ficha pelo número de identificação.</p>
           </div>
           <div className="mt-12 space-y-4 border-l border-primary/50 pl-5 text-xs leading-5 text-on-surface-variant">
@@ -117,39 +117,39 @@ export function PlayerSelfRegistrationPage() {
           <div className="max-w-xl">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Cadastro pré-jogo</p>
+                <p className="text-xs font-bold text-primary">Cadastro pré-jogo</p>
                 <h2 className="mt-2 text-2xl font-bold text-on-surface sm:text-3xl">Identificação do jogador</h2>
               </div>
-              <span className="border border-outline-variant px-2.5 py-1 text-[10px] font-bold tracking-[0.16em] text-on-surface-variant">SECURE FORM</span>
+              <span className="border border-outline-variant px-2.5 py-1 text-[10px] font-bold text-on-surface-variant">SECURE FORM</span>
             </div>
             <p className="mt-4 max-w-lg text-sm leading-6 text-on-surface-variant">Apenas os dados necessários para sua ficha e check-in. Campos marcados com <span className="text-primary">*</span> são obrigatórios.</p>
 
             <form noValidate onSubmit={submit} className="mt-9 space-y-5">
               <div>
-                <label htmlFor="self-name" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Nome completo <span className="text-primary">*</span></label>
+                <label htmlFor="self-name" className="text-xs font-bold text-on-surface-variant">Nome completo <span className="text-primary">*</span></label>
                 <input id="self-name" name="name" type="text" autoComplete="name" value={form.name} onChange={(event) => update('name', event.target.value)} className={`${inputClass}${errorClass('name')}`} aria-invalid={Boolean(errors.name)} placeholder="SEU NOME" disabled={isSubmitting} />
                 <FieldError message={errors.name} />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="self-cpf" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">CPF <span className="text-primary">*</span></label>
+                  <label htmlFor="self-cpf" className="text-xs font-bold text-on-surface-variant">CPF <span className="text-primary">*</span></label>
                   <input id="self-cpf" name="cpf" type="text" inputMode="numeric" autoComplete="off" value={form.cpf} onChange={(event) => update('cpf', formatCpf(event.target.value))} className={`${inputClass}${errorClass('cpf')}`} aria-invalid={Boolean(errors.cpf)} placeholder="000.000.000-00" disabled={isSubmitting} />
                   <FieldError message={errors.cpf} />
                 </div>
                 <div>
-                  <label htmlFor="self-phone" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Telefone <span className="text-primary">*</span></label>
+                  <label htmlFor="self-phone" className="text-xs font-bold text-on-surface-variant">Telefone <span className="text-primary">*</span></label>
                   <input id="self-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={(event) => update('phone', formatPhone(event.target.value))} className={`${inputClass}${errorClass('phone')}`} aria-invalid={Boolean(errors.phone)} placeholder="(00) 00000-0000" disabled={isSubmitting} />
                   <FieldError message={errors.phone} />
                 </div>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="self-email" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">E-mail <span className="text-primary">*</span></label>
+                  <label htmlFor="self-email" className="text-xs font-bold text-on-surface-variant">E-mail <span className="text-primary">*</span></label>
                   <input id="self-email" name="email" type="email" autoComplete="email" value={form.email} onChange={(event) => update('email', event.target.value)} className={`${inputClass}${errorClass('email')}`} aria-invalid={Boolean(errors.email)} placeholder="VOCE@EMAIL.COM" disabled={isSubmitting} />
                   <FieldError message={errors.email} />
                 </div>
                 <div>
-                  <label htmlFor="self-birth-date" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Data de nascimento <span className="text-primary">*</span></label>
+                  <label htmlFor="self-birth-date" className="text-xs font-bold text-on-surface-variant">Data de nascimento <span className="text-primary">*</span></label>
                   <input id="self-birth-date" name="date_of_birth" type="date" autoComplete="bday" value={form.date_of_birth} onChange={(event) => update('date_of_birth', event.target.value)} className={`${inputClass}${errorClass('date_of_birth')}`} aria-invalid={Boolean(errors.date_of_birth)} disabled={isSubmitting} />
                   <FieldError message={errors.date_of_birth} />
                 </div>
@@ -162,7 +162,7 @@ export function PlayerSelfRegistrationPage() {
                 <FieldError message={errors.terms_accepted} />
               </div>
               <div aria-live="polite">{state.kind === 'error' && <p role="alert" className="border border-rose-400/50 bg-rose-400/10 p-4 text-sm text-rose-100">{state.message}</p>}</div>
-              <button type="submit" disabled={isSubmitting} className="group flex min-h-[3.5rem] w-full items-center justify-between bg-primary px-5 py-3 text-left text-sm font-black uppercase tracking-[0.14em] text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30 disabled:cursor-not-allowed disabled:bg-primary/50">
+              <button type="submit" disabled={isSubmitting} className="group flex min-h-[3.5rem] w-full items-center justify-between bg-primary px-5 py-3 text-left text-sm font-semibold text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30 disabled:cursor-not-allowed disabled:bg-primary/50">
                 <span>{isSubmitting ? 'Transmitindo cadastro...' : 'Enviar cadastro'}</span><span className="text-xl transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
               </button>
             </form>

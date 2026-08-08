@@ -10,9 +10,9 @@ interface Props {
 }
 
 export function CreateGameForm({ onGameStarted, onCancel }: Props) {
-  const [type, setType]       = useState<GameType>('OPEN');
-  const [notes, setNotes]     = useState('');
-  const [error, setError]     = useState<string | null>(null);
+  const [type, setType] = useState<GameType>('OPEN');
+  const [notes, setNotes] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent) {
@@ -21,7 +21,7 @@ export function CreateGameForm({ onGameStarted, onCancel }: Props) {
     setLoading(true);
 
     try {
-      const game    = await createGame({ type, notes: notes.trim() || undefined });
+      const game = await createGame({ type, notes: notes.trim() || undefined });
       const started = await startGame(game.id);
       onGameStarted(started);
     } catch (err) {

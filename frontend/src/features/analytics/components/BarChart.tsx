@@ -28,7 +28,7 @@ export function BarChart({ bars, height = 180 }: Props) {
                 className={`w-full transition-all ${bar.highlight ? 'bg-primary' : 'bg-primary-container'}`}
                 style={{ height: `${Math.max(pct, bar.value > 0 ? 2 : 0)}%` }}
               />
-              <span className="text-[9px] uppercase tracking-[0.08em] text-outline">{bar.label}</span>
+              <span className="text-[9px] text-outline">{bar.label}</span>
             </div>
           );
         })}

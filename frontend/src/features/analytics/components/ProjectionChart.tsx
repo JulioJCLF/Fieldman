@@ -8,9 +8,9 @@ import { BarChart } from './BarChart';
 const NEXT_YEAR = new Date().getUTCFullYear() + 1;
 
 export function ProjectionChart() {
-  const [report, setReport]   = useState<ProjectionReport | null>(null);
+  const [report, setReport] = useState<ProjectionReport | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -26,10 +26,10 @@ export function ProjectionChart() {
   return (
     <div className="border border-outline-variant bg-surface-lowest p-5">
       <div className="flex items-center justify-between gap-4">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">
+        <p className="text-xs font-bold text-primary">
           Projeção {NEXT_YEAR}
         </p>
-        <span className="text-[10px] uppercase tracking-[0.12em] text-outline">regressão linear</span>
+        <span className="text-[10px] text-outline">regressão linear</span>
       </div>
 
       {loading && <p className="mt-4 text-xs text-outline">Calculando projeção…</p>}

@@ -8,10 +8,10 @@ import { GameStatusBanner } from './GameStatusBanner';
 import { GameSummaryCard } from './GameSummaryCard';
 
 export function GamePanel() {
-  const [activeGame, setActiveGame]   = useState<Game | null>(null);
-  const [showForm, setShowForm]       = useState(false);
+  const [activeGame, setActiveGame] = useState<Game | null>(null);
+  const [showForm, setShowForm] = useState(false);
   const [loadingInit, setLoadingInit] = useState(true);
-  const [initError, setInitError]     = useState<string | null>(null);
+  const [initError, setInitError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,17 +43,17 @@ export function GamePanel() {
     <section className="border-b border-outline-variant pb-8">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+          <p className="text-xs font-bold text-primary">
             Módulo 02 · games/jogo
           </p>
-          <h2 className="mt-2 text-2xl font-black uppercase tracking-tight text-on-surface sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-on-surface sm:text-3xl">
             Gestão de jogo.
           </h2>
         </div>
         {!activeGame && !showForm && !loadingInit && (
           <button
             onClick={() => setShowForm(true)}
-            className="border border-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-on-primary"
+            className="border border-primary px-4 py-2 text-xs font-bold text-primary transition hover:bg-primary hover:text-on-primary"
           >
             Abrir novo jogo →
           </button>

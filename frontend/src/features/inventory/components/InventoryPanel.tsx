@@ -14,17 +14,17 @@ interface Props {
 type View = 'sale' | 'products' | 'reports';
 
 const VIEW_LABELS: Record<View, string> = {
-  sale:     'Venda',
+  sale: 'Venda',
   products: 'Produtos',
-  reports:  'Relatórios',
+  reports: 'Relatórios',
 };
 
 export function InventoryPanel({ channel }: Props) {
-  const [view, setView]           = useState<View>('sale');
-  const [products, setProducts]   = useState<Product[]>([]);
-  const [showForm, setShowForm]   = useState(false);
-  const [loading, setLoading]     = useState(true);
-  const [error, setError]         = useState<string | null>(null);
+  const [view, setView] = useState<View>('sale');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -57,10 +57,10 @@ export function InventoryPanel({ channel }: Props) {
   return (
     <section>
       <div className="border-b border-outline-variant pb-6">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+        <p className="text-xs font-bold text-primary">
           {channel === 'SNACKBAR' ? 'Módulo 03 · lanchonete' : 'Módulo 04 · loja'}
         </p>
-        <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-on-surface sm:text-4xl">
+        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-on-surface sm:text-4xl">
           {CHANNEL_LABEL[channel]}.
         </h2>
       </div>
@@ -69,7 +69,7 @@ export function InventoryPanel({ channel }: Props) {
       <div className="mt-6 flex gap-2">
         {(Object.keys(VIEW_LABELS) as View[]).map((v) => (
           <button key={v} type="button" onClick={() => setView(v)}
-            className={`border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+            className={`border px-4 py-2 text-xs font-bold transition ${
               view === v ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant text-on-surface-variant hover:border-outline'
             }`}>
             {VIEW_LABELS[v]}
@@ -90,7 +90,7 @@ export function InventoryPanel({ channel }: Props) {
             <div className="flex justify-end">
               {!showForm && (
                 <button onClick={() => setShowForm(true)}
-                  className="border border-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-on-primary">
+                  className="border border-primary px-4 py-2 text-xs font-bold text-primary transition hover:bg-primary hover:text-on-primary">
                   + Novo produto
                 </button>
               )}

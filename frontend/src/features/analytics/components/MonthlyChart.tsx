@@ -8,11 +8,11 @@ import { BarChart } from './BarChart';
 const CURRENT_MONTH = new Date().getUTCMonth() + 1;
 
 export function MonthlyChart() {
-  const [year, setYear]           = useState(new Date().getUTCFullYear());
-  const [report, setReport]       = useState<MonthlyReport | null>(null);
+  const [year, setYear] = useState(new Date().getUTCFullYear());
+  const [report, setReport] = useState<MonthlyReport | null>(null);
   const [comparison, setComparison] = useState<MonthComparison | null>(null);
-  const [loading, setLoading]     = useState(true);
-  const [error, setError]         = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -32,7 +32,7 @@ export function MonthlyChart() {
   return (
     <div className="border border-outline-variant bg-surface-lowest p-5">
       <div className="flex items-center justify-between gap-4">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Faturamento mensal</p>
+        <p className="text-xs font-bold text-primary">Faturamento mensal</p>
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => setYear((y) => y - 1)}
             className="border border-outline-variant px-2.5 py-1 text-xs text-on-surface-variant hover:border-outline">←</button>
@@ -50,8 +50,8 @@ export function MonthlyChart() {
           <div className="mt-5">
             <BarChart
               bars={report.months.map((m) => ({
-                label:     MONTH_LABELS[m.month - 1],
-                value:     m.revenue,
+                label: MONTH_LABELS[m.month - 1],
+                value: m.revenue,
                 highlight: isCurrentYear && m.month === CURRENT_MONTH,
               }))}
             />
