@@ -1,7 +1,11 @@
 import { api, ApiError } from '../../../lib/apiClient';
-import type { CreateGamePayload, Game } from '../types';
+import type { CreateGamePayload, Game, GameHistoryItem } from '../types';
 
 export { ApiError };
+
+export async function getGameHistory(): Promise<GameHistoryItem[]> {
+  return api.get<GameHistoryItem[]>('/api/games/history');
+}
 
 export async function createGame(payload: CreateGamePayload): Promise<Game> {
   return api.post<Game>('/api/games', payload);

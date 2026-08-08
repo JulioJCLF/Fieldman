@@ -18,6 +18,7 @@ function fakeRepo(overrides: Partial<GamesRepository> = {}): GamesRepository {
     findActive: vi.fn().mockResolvedValue(null),
     updateStatus: vi.fn(),
     listByDate: vi.fn(),
+    listHistoryWithStats: vi.fn(),
     ...overrides,
   };
 }

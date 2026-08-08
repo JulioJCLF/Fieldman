@@ -63,4 +63,13 @@ export class GameController {
       next(error);
     }
   };
+
+  public history = async (_request: Request, response: Response, next: NextFunction): Promise<void> => {
+    try {
+      const games = await this.gameService.listHistory();
+      response.status(200).json(success(games));
+    } catch (error) {
+      next(error);
+    }
+  };
 }

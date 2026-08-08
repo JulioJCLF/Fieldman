@@ -20,10 +20,21 @@ export interface CreateGameInput {
   notes?: string;
 }
 
+/** Jogo com estatísticas agregadas de comandas para a tela de histórico. */
+export interface GameHistoryItem extends Game {
+  player_count: number;
+  equipped_count: number;
+  rental_count: number;
+  entry_revenue: number;
+  refills_revenue: number;
+  total_revenue: number;
+}
+
 export interface GamesRepository {
   create(input: CreateGameInput): Promise<Game>;
   findById(id: string): Promise<Game | null>;
   findActive(): Promise<Game | null>;
   updateStatus(id: string, status: GameStatus): Promise<Game>;
   listByDate(date: string): Promise<Game[]>;
+  listHistoryWithStats(): Promise<GameHistoryItem[]>;
 }

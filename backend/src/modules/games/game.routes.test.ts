@@ -15,6 +15,27 @@ const game: Game = {
 };
 
 describe('game routes', () => {
+  it('lists the game history with stats', async () => {
+    const { app, services } = buildTestApp();
+    const historyItem = {
+      ...game,
+      status: 'FINISHED' as const,
+      player_count: 12,
+      equipped_count: 8,
+      rental_count: 4,
+      entry_revenue: 960,
+      refills_revenue: 240,
+      total_revenue: 1200,
+    };
+    services.gameService.listHistory.mockResolvedValue([historyItem]);
+
+    const response = await request(app).get('/api/games/history');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ success: true, data: [historyItem] });
+    expect(services.gameService.listHistory).toHaveBeenCalled();
+  });
+
   it('creates a game', async () => {
     const { app, services } = buildTestApp();
     services.gameService.create.mockResolvedValue({ ...game, status: 'SCHEDULED' });

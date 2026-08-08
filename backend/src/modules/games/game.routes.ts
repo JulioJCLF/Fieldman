@@ -9,6 +9,7 @@ export function createGameRouter(gameService: GameServicePort): Router {
 
   router.post('/',             controller.create);
   router.get('/active',        controller.getActive);
+  router.get('/history',       controller.history);
   router.get('/',              controller.listByDate);
   router.get('/:id',           controller.getById);
   router.patch('/:id/start',   controller.start);

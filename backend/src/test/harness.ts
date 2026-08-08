@@ -37,7 +37,7 @@ function mockFromKeys<T extends object>(keys: (keyof T)[]): Mocked<T> {
 export function buildTestApp(): { app: Express; services: TestServices } {
   const services: TestServices = {
     playerService:    mockFromKeys(['register', 'search']),
-    gameService:      mockFromKeys(['create', 'start', 'finish', 'getActive', 'getById', 'listByDate']),
+    gameService:      mockFromKeys(['create', 'start', 'finish', 'getActive', 'getById', 'listByDate', 'listHistory']),
     tabService:       mockFromKeys(['checkin', 'listTabs', 'getGameSummary', 'getTab', 'addRefill', 'markRefillPaid', 'checkout']),
     inventoryService: mockFromKeys(['createProduct', 'listProducts', 'getProduct', 'updateProduct', 'adjustStock', 'recordSale', 'listSales', 'getRevenueSummary', 'getTopProducts', 'getTopCategories']),
     analyticsService: mockFromKeys(['getOverview', 'getMonthly', 'compareMonthAcrossYears', 'compareYears', 'getProjection']),

@@ -1,5 +1,5 @@
 import { HttpError } from '../../shared/errors.js';
-import type { CreateGameInput, Game, GamesRepository } from './game.types.js';
+import type { CreateGameInput, Game, GameHistoryItem, GamesRepository } from './game.types.js';
 
 export interface GameServicePort {
   create(input: CreateGameInput): Promise<Game>;
@@ -8,6 +8,7 @@ export interface GameServicePort {
   getActive(): Promise<Game | null>;
   getById(id: string): Promise<Game>;
   listByDate(date: string): Promise<Game[]>;
+  listHistory(): Promise<GameHistoryItem[]>;
 }
 
 export class GameService implements GameServicePort {
@@ -56,6 +57,10 @@ export class GameService implements GameServicePort {
 
   public listByDate(date: string): Promise<Game[]> {
     return this.repository.listByDate(date);
+  }
+
+  public listHistory(): Promise<GameHistoryItem[]> {
+    return this.repository.listHistoryWithStats();
   }
 
   private async requireGame(id: string): Promise<Game> {

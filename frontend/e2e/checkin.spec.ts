@@ -8,6 +8,8 @@ test.describe('Operação · check-in', () => {
     await seedSession(page);
     await mockApi(page);
     await page.goto('/');
+    // A home é o dashboard; o check-in fica na aba Jogos.
+    await page.locator('nav').getByRole('button', { name: 'Jogos' }).click();
   });
 
   test('mostra o jogo ativo e permite abrir uma comanda de avulso', async ({ page }) => {

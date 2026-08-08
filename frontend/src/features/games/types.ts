@@ -19,3 +19,12 @@ export interface CreateGamePayload {
   game_date?: string;
   notes?: string;
 }
+
+export interface GameHistoryItem extends Game {
+  player_count: number;
+  equipped_count: number;
+  rental_count: number;
+  entry_revenue: number;
+  refills_revenue: number;
+  total_revenue: number;
+}
