@@ -30,20 +30,20 @@ export function MonthlyChart() {
   const isCurrentYear = year === new Date().getUTCFullYear();
 
   return (
-    <div className="border border-[#2d382a] bg-[#0d120d] p-5">
+    <div className="border border-outline-variant bg-surface-lowest p-5">
       <div className="flex items-center justify-between gap-4">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-lime-300">Faturamento mensal</p>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Faturamento mensal</p>
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => setYear((y) => y - 1)}
-            className="border border-[#384534] px-2.5 py-1 font-mono text-xs text-stone-400 hover:border-stone-500">←</button>
-          <span className="font-mono text-sm font-bold text-stone-200">{year}</span>
+            className="border border-outline-variant px-2.5 py-1 text-xs text-on-surface-variant hover:border-outline">←</button>
+          <span className="text-sm font-bold text-on-surface">{year}</span>
           <button type="button" onClick={() => setYear((y) => y + 1)}
-            className="border border-[#384534] px-2.5 py-1 font-mono text-xs text-stone-400 hover:border-stone-500">→</button>
+            className="border border-outline-variant px-2.5 py-1 text-xs text-on-surface-variant hover:border-outline">→</button>
         </div>
       </div>
 
-      {loading && <p className="mt-4 font-mono text-xs text-stone-500">Carregando…</p>}
-      {error && <p className="mt-4 border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>}
+      {loading && <p className="mt-4 text-xs text-outline">Carregando…</p>}
+      {error && <p className="mt-4 border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
 
       {!loading && !error && report && (
         <>
@@ -57,17 +57,17 @@ export function MonthlyChart() {
             />
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#2d382a] pt-4 font-mono text-xs">
-            <span className="text-stone-400">Total {year}: <span className="font-bold text-lime-300">{formatCurrency(report.total)}</span></span>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-outline-variant pt-4 text-xs">
+            <span className="text-on-surface-variant">Total {year}: <span className="font-bold text-primary">{formatCurrency(report.total)}</span></span>
 
             {/* Comparação mês atual vs mesmo mês do ano anterior */}
             {comparison && (
-              <span className="text-stone-400">
+              <span className="text-on-surface-variant">
                 {MONTH_LABELS[comparison.month - 1]}/{comparison.current_year} vs {comparison.previous_year}:{' '}
                 {comparison.delta_pct === null ? (
-                  <span className="text-stone-500">sem base anterior</span>
+                  <span className="text-outline">sem base anterior</span>
                 ) : (
-                  <span className={comparison.delta_pct >= 0 ? 'font-bold text-lime-300' : 'font-bold text-red-400'}>
+                  <span className={comparison.delta_pct >= 0 ? 'font-bold text-primary' : 'font-bold text-error'}>
                     {comparison.delta_pct >= 0 ? '+' : ''}{comparison.delta_pct.toFixed(1)}%
                   </span>
                 )}

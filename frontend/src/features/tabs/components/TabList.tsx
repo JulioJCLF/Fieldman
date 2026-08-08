@@ -9,8 +9,8 @@ interface Props {
 export function TabList({ tabs, onTabUpdated }: Props) {
   if (tabs.length === 0) {
     return (
-      <div className="border border-dashed border-[#384534] px-5 py-6 text-center">
-        <p className="font-mono text-xs text-stone-500">
+      <div className="border border-dashed border-outline-variant px-5 py-6 text-center">
+        <p className="text-xs text-outline">
           Nenhum check-in realizado neste jogo ainda.
         </p>
       </div>

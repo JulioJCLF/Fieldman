@@ -10,10 +10,10 @@ interface Props {
 /** Painel bordado padrão do sistema. Cabeçalho opcional (título + ações). */
 export function Card({ title, actions, className = '', children }: Props) {
   return (
-    <div className={`border border-[#384534] bg-[#0d120d] p-5 sm:p-6 ${className}`}>
+    <div className={`rounded-xl border border-outline-variant bg-surface-lowest p-5 shadow-panel sm:p-6 ${className}`}>
       {(title || actions) && (
-        <div className="mb-4 flex items-center justify-between gap-4 border-b border-[#2d382a] pb-4">
-          {title && <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">{title}</p>}
+        <div className="mb-4 flex items-center justify-between gap-4 border-b border-outline-variant pb-4">
+          {title && <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">{title}</p>}
           {actions}
         </div>
       )}

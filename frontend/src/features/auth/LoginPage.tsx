@@ -27,25 +27,25 @@ export function LoginPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#080b08] px-5 text-stone-100">
-      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(163,230,53,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(163,230,53,0.028)_1px,transparent_1px)] bg-[size:28px_28px]" />
-      <div className="pointer-events-none fixed inset-x-0 top-0 h-1 bg-lime-300" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-surface px-5 text-on-surface">
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,94,0,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(255,94,0,0.028)_1px,transparent_1px)] bg-[size:28px_28px]" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 h-1 bg-primary" />
 
-      <div className="relative w-full max-w-sm border border-[#384534] bg-[#0d120d] p-7 shadow-[0_18px_50px_rgba(0,0,0,0.35)] sm:p-8">
+      <div className="relative w-full max-w-sm rounded-2xl border border-outline-variant bg-surface-lowest p-7 shadow-panel-lg sm:p-8">
         <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center border border-lime-300 bg-lime-300 font-mono text-sm font-black text-[#080b08]">FM</div>
+          <div className="grid h-10 w-10 place-items-center rounded-lg border border-primary bg-primary text-sm font-black text-on-primary">FM</div>
           <div>
-            <p className="font-mono text-xs font-bold tracking-[0.24em] text-lime-300">FIELD//MAN</p>
-            <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-stone-500">Acesso operacional</p>
+            <p className="text-xs font-bold tracking-[0.24em] text-primary">FIELD//MAN</p>
+            <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-outline">Acesso operacional</p>
           </div>
         </div>
 
-        <h1 className="mt-7 text-2xl font-black uppercase tracking-tight text-white">Entrar</h1>
-        <p className="mt-1 text-sm text-stone-400">Use suas credenciais de staff para acessar o console.</p>
+        <h1 className="mt-7 text-2xl font-black uppercase tracking-tight text-on-surface">Entrar</h1>
+        <p className="mt-1 text-sm text-on-surface-variant">Use suas credenciais de staff para acessar o console.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label htmlFor="email" className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-stone-500">
+            <label htmlFor="email" className="text-[10px] font-bold uppercase tracking-[0.16em] text-outline">
               E-mail
             </label>
             <input
@@ -55,13 +55,13 @@ export function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1.5 w-full border border-[#34402f] bg-[#111711] px-3 py-2.5 text-sm text-stone-100 outline-none transition focus:border-lime-300"
+              className="mt-1.5 w-full rounded-lg border border-outline-variant bg-surface-lowest px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
               placeholder="voce@campo.com"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-stone-500">
+            <label htmlFor="password" className="text-[10px] font-bold uppercase tracking-[0.16em] text-outline">
               Senha
             </label>
             <input
@@ -71,13 +71,13 @@ export function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1.5 w-full border border-[#34402f] bg-[#111711] px-3 py-2.5 text-sm text-stone-100 outline-none transition focus:border-lime-300"
+              className="mt-1.5 w-full rounded-lg border border-outline-variant bg-surface-lowest px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
               placeholder="••••••••"
             />
           </div>
 
           {error && (
-            <p role="alert" className="border-l-2 border-red-400 bg-red-400/10 px-3 py-2 text-sm text-red-200">
+            <p role="alert" className="border-l-2 border-error bg-error/10 px-3 py-2 text-sm text-error">
               {error}
             </p>
           )}
@@ -85,7 +85,7 @@ export function LoginPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full border border-lime-300 bg-lime-300 px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.16em] text-[#080b08] transition hover:bg-lime-200 disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full rounded-lg border border-primary bg-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-on-primary shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {submitting ? 'Entrando…' : 'Entrar'}
           </button>

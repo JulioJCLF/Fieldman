@@ -23,11 +23,11 @@ export function YearComparison() {
   }, []);
 
   return (
-    <div className="border border-[#2d382a] bg-[#0d120d] p-5">
-      <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-lime-300">Comparativo entre anos</p>
+    <div className="border border-outline-variant bg-surface-lowest p-5">
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Comparativo entre anos</p>
 
-      {loading && <p className="mt-4 font-mono text-xs text-stone-500">Carregando…</p>}
-      {error && <p className="mt-4 border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>}
+      {loading && <p className="mt-4 text-xs text-outline">Carregando…</p>}
+      {error && <p className="mt-4 border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
 
       {!loading && !error && (
         <div className="mt-5">
@@ -38,11 +38,11 @@ export function YearComparison() {
               highlight: t.year === CURRENT_YEAR,
             }))}
           />
-          <div className="mt-4 space-y-1 border-t border-[#2d382a] pt-4 font-mono text-xs">
+          <div className="mt-4 space-y-1 border-t border-outline-variant pt-4 text-xs">
             {totals.map((t) => (
               <div key={t.year} className="flex justify-between">
-                <span className="text-stone-400">{t.year}</span>
-                <span className="font-bold text-stone-200">{formatCurrency(t.revenue)}</span>
+                <span className="text-on-surface-variant">{t.year}</span>
+                <span className="font-bold text-on-surface">{formatCurrency(t.revenue)}</span>
               </div>
             ))}
           </div>

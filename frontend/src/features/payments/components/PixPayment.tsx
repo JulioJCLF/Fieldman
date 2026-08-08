@@ -75,18 +75,18 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
   return (
     <div className="space-y-4">
       {error && (
-        <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>
+        <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>
       )}
 
       {status === 'creating' && !error && (
-        <p className="font-mono text-xs text-stone-500">Gerando cobrança PIX…</p>
+        <p className="text-xs text-outline">Gerando cobrança PIX…</p>
       )}
 
       {charge && status === 'waiting' && (
         <>
-          <div className="flex items-center justify-between border border-[#34402f] bg-[#111711] px-4 py-3 font-mono">
-            <span className="text-[10px] uppercase tracking-[0.12em] text-stone-500">Valor</span>
-            <span className="text-lg font-bold text-lime-300">{formatCurrency(charge.amount)}</span>
+          <div className="flex items-center justify-between border border-outline-variant bg-surface-low px-4 py-3">
+            <span className="text-[10px] uppercase tracking-[0.12em] text-outline">Valor</span>
+            <span className="text-lg font-bold text-primary">{formatCurrency(charge.amount)}</span>
           </div>
 
           {/* QR Code: imagem quando disponível, senão copia-e-cola em destaque */}
@@ -95,23 +95,23 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
               <img src={`data:image/png;base64,${charge.qr_code_base64}`} alt="QR Code PIX" className="h-56 w-56" />
             </div>
           ) : (
-            <div className="border border-dashed border-[#384534] bg-[#0d120d] p-4 text-center">
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-500">
+            <div className="border border-dashed border-outline-variant bg-surface-lowest p-4 text-center">
+              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">
                 Código copia-e-cola
               </p>
-              <p className="mt-2 break-all font-mono text-[11px] leading-5 text-stone-300">{charge.qr_code}</p>
+              <p className="mt-2 break-all text-[11px] leading-5 text-on-surface-variant">{charge.qr_code}</p>
             </div>
           )}
 
           <button
             type="button"
             onClick={handleCopy}
-            className="w-full border border-lime-300/60 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.14em] text-lime-300 transition hover:bg-lime-300/10"
+            className="w-full border border-primary/60 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary/10"
           >
             {copied ? 'Copiado ✓' : 'Copiar código PIX'}
           </button>
 
-          <div className="flex items-center justify-center gap-2 font-mono text-xs text-stone-400">
+          <div className="flex items-center justify-center gap-2 text-xs text-on-surface-variant">
             <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
             Aguardando confirmação do pagamento…
           </div>
@@ -119,7 +119,7 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
           <button
             type="button"
             onClick={onCancel}
-            className="w-full border border-[#384534] py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-stone-400 hover:border-stone-500"
+            className="w-full border border-outline-variant py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant hover:border-outline"
           >
             Cancelar
           </button>
@@ -128,20 +128,20 @@ export function PixPayment({ tabId, onApproved, onCancel }: Props) {
 
       {status === 'approved' && (
         <div className="flex flex-col items-center gap-3 py-6">
-          <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-lime-300 text-2xl text-lime-300">✓</div>
-          <p className="font-mono text-sm font-bold uppercase tracking-[0.14em] text-lime-300">Pagamento aprovado</p>
+          <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-primary text-2xl text-primary">✓</div>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">Pagamento aprovado</p>
         </div>
       )}
 
       {status === 'rejected' && (
         <div className="space-y-3">
-          <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">
+          <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">
             Pagamento não aprovado. Gere um novo PIX ou tente outro método.
           </p>
           <button
             type="button"
             onClick={onCancel}
-            className="w-full border border-[#384534] py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-stone-400 hover:border-stone-500"
+            className="w-full border border-outline-variant py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant hover:border-outline"
           >
             Voltar
           </button>

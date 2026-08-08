@@ -76,7 +76,7 @@ export function ProductForm({ channel, onCreated, onCancel }: Props) {
 
         {error && <Alert>{error}</Alert>}
 
-        <div className="flex justify-end gap-3 border-t border-[#2d382a] pt-4">
+        <div className="flex justify-end gap-3 border-t border-outline-variant pt-4">
           <Button variant="secondary" onClick={onCancel} disabled={loading}>Cancelar</Button>
           <Button type="submit" disabled={loading}>{loading ? 'Salvando…' : 'Cadastrar'}</Button>
         </div>

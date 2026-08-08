@@ -10,15 +10,15 @@ interface Props {
 export function Modal({ title, onClose, closeDisabled = false, children }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-      <div className="w-full max-w-md border border-[#384534] bg-[#0d120d]">
-        <div className="flex items-center justify-between border-b border-[#2d382a] px-5 py-4">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">{title}</p>
+      <div className="w-full max-w-md overflow-hidden rounded-xl border border-outline-variant bg-surface-lowest shadow-panel-lg">
+        <div className="flex items-center justify-between border-b border-outline-variant px-5 py-4">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">{title}</p>
           <button
             type="button"
             onClick={onClose}
             disabled={closeDisabled}
             aria-label="Fechar"
-            className="font-mono text-xs text-stone-500 transition hover:text-stone-300 disabled:opacity-40"
+            className="text-xs text-outline transition hover:text-on-surface-variant disabled:opacity-40"
           >
             ✕
           </button>

@@ -31,17 +31,17 @@ export class ErrorBoundary extends Component<Props, State> {
   public render(): ReactNode {
     if (this.state.error) {
       return (
-        <div className="grid min-h-screen place-items-center bg-[#080b08] px-6 text-stone-100">
-          <div className="max-w-md border border-red-400/40 bg-[#0d120d] p-8 text-center">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-red-400">Erro inesperado</p>
-            <h1 className="mt-3 text-2xl font-black text-white">Algo saiu do trilho.</h1>
-            <p className="mt-3 text-sm leading-6 text-stone-400">
+        <div className="grid min-h-screen place-items-center bg-surface px-6 text-on-surface">
+          <div className="max-w-md border border-error/40 bg-surface-lowest p-8 text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-error">Erro inesperado</p>
+            <h1 className="mt-3 text-2xl font-black text-on-surface">Algo saiu do trilho.</h1>
+            <p className="mt-3 text-sm leading-6 text-on-surface-variant">
               A tela encontrou um erro e foi interrompida com segurança. Recarregue para continuar a operação.
             </p>
             <button
               type="button"
               onClick={this.handleReload}
-              className="mt-6 border border-lime-300 bg-lime-300 px-5 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#080b08] transition hover:bg-lime-200"
+              className="mt-6 border border-primary bg-primary px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-primary transition hover:bg-primary"
             >
               Recarregar
             </button>

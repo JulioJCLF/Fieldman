@@ -6,14 +6,14 @@ import { YearComparison } from './YearComparison';
 export function AnalyticsPanel() {
   return (
     <section>
-      <div className="border-b border-[#293226] pb-6">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-lime-300">
+      <div className="border-b border-outline-variant pb-6">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
           Módulo 05 · gestão/gráficos
         </p>
-        <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-on-surface sm:text-4xl">
           Gestão & projeções.
         </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-400">
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-on-surface-variant">
           Consolidação de faturamento por período, comparativos entre anos e projeção de crescimento.
         </p>
       </div>

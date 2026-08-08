@@ -40,20 +40,20 @@ export function GamePanel() {
   }
 
   return (
-    <section className="border-b border-[#293226] pb-8">
+    <section className="border-b border-outline-variant pb-8">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-lime-300">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
             Módulo 02 · games/jogo
           </p>
-          <h2 className="mt-2 text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-black uppercase tracking-tight text-on-surface sm:text-3xl">
             Gestão de jogo.
           </h2>
         </div>
         {!activeGame && !showForm && !loadingInit && (
           <button
             onClick={() => setShowForm(true)}
-            className="border border-lime-300 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-lime-200 transition hover:bg-lime-300 hover:text-[#080b08]"
+            className="border border-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-on-primary"
           >
             Abrir novo jogo →
           </button>
@@ -62,11 +62,11 @@ export function GamePanel() {
 
       <div className="mt-5 space-y-4">
         {loadingInit && (
-          <p className="font-mono text-xs text-stone-500">Verificando jogo ativo…</p>
+          <p className="text-xs text-outline">Verificando jogo ativo…</p>
         )}
 
         {initError && (
-          <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">
+          <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">
             {initError}
           </p>
         )}
@@ -80,8 +80,8 @@ export function GamePanel() {
         )}
 
         {!loadingInit && !initError && !activeGame && !showForm && (
-          <div className="border border-dashed border-[#384534] px-5 py-6 text-center">
-            <p className="font-mono text-xs text-stone-500">
+          <div className="border border-dashed border-outline-variant px-5 py-6 text-center">
+            <p className="text-xs text-outline">
               Nenhum jogo em andamento. Abra um novo jogo para iniciar o check-in.
             </p>
           </div>

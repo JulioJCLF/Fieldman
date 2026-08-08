@@ -34,7 +34,7 @@ export default function App() {
   // Console operacional: exige sessão de staff.
   if (loading) {
     return (
-      <div className="grid min-h-screen place-items-center bg-[#080b08] font-mono text-xs uppercase tracking-[0.2em] text-stone-500">
+      <div className="grid min-h-screen place-items-center bg-surface text-xs uppercase tracking-[0.2em] text-outline">
         Carregando…
       </div>
     );
@@ -45,28 +45,28 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#080b08] text-stone-100">
-      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(163,230,53,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(163,230,53,0.028)_1px,transparent_1px)] bg-[size:28px_28px]" />
-      <div className="pointer-events-none fixed inset-x-0 top-0 h-1 bg-lime-300" />
+    <div className="min-h-screen overflow-x-hidden bg-surface text-on-surface">
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,94,0,0.028)_1px,transparent_1px),linear-gradient(90deg,rgba(255,94,0,0.028)_1px,transparent_1px)] bg-[size:28px_28px]" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 h-1 bg-primary" />
 
-      <header className="relative border-b border-[#293226] bg-[#0d110d]/95 backdrop-blur">
+      <header className="relative border-b border-outline-variant bg-surface-lowest/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-8 lg:px-10">
           <div className="flex items-center gap-4">
-            <div className="grid h-10 w-10 place-items-center border border-lime-300 bg-lime-300 font-mono text-sm font-black text-[#080b08]">FM</div>
+            <div className="grid h-10 w-10 place-items-center rounded-lg border border-primary bg-primary text-sm font-black text-on-primary">FM</div>
             <div>
-              <p className="font-mono text-xs font-bold tracking-[0.24em] text-lime-300">FIELD//MAN</p>
-              <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-stone-500">Central operacional</p>
+              <p className="text-xs font-bold tracking-[0.24em] text-primary">FIELD//MAN</p>
+              <p className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-outline">Central operacional</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="hidden border border-[#3d4839] px-3 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-stone-400 sm:block">Recepção online</span>
-            <a href="/register" className="border border-lime-300 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-lime-200 transition hover:bg-lime-300 hover:text-[#080b08]">
+            <span className="hidden rounded-full border border-outline-variant bg-surface-container px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-on-surface-variant sm:block">Recepção online</span>
+            <a href="/register" className="rounded-lg border border-primary px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-primary transition hover:bg-primary hover:text-on-primary">
               Cadastro público →
             </a>
             <button
               type="button"
               onClick={() => void signOut()}
-              className="border border-[#3d4839] px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-stone-400 transition hover:border-stone-500 hover:text-stone-200"
+              className="rounded-lg border border-outline-variant px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-on-surface-variant transition hover:border-outline hover:text-on-surface"
             >
               Sair
             </button>
@@ -80,10 +80,10 @@ export default function App() {
               key={item.view}
               type="button"
               onClick={() => setView(item.view)}
-              className={`border-b-2 px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`border-b-2 px-4 py-3 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 view === item.view
-                  ? 'border-lime-300 text-lime-300'
-                  : 'border-transparent text-stone-500 hover:text-stone-300'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-outline hover:text-on-surface-variant'
               }`}
             >
               {item.label}
@@ -101,20 +101,20 @@ export default function App() {
           <>
             <GamePanel />
 
-            <section className="mt-10 border-b border-[#293226] pb-8 lg:flex lg:items-end lg:justify-between">
+            <section className="mt-10 border-b border-outline-variant pb-8 lg:flex lg:items-end lg:justify-between">
               <div className="max-w-3xl">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-lime-300">Módulo 01 · players/check-in</p>
-                <h1 className="mt-3 text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">Recepção de campo.</h1>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-stone-400">Cadastre novos jogadores, localize fichas existentes e prepare a seleção para o próximo check-in.</p>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Módulo 01 · players/check-in</p>
+                <h1 className="mt-3 text-4xl font-black uppercase tracking-tight text-on-surface sm:text-5xl">Recepção de campo.</h1>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-on-surface-variant">Cadastre novos jogadores, localize fichas existentes e prepare a seleção para o próximo check-in.</p>
               </div>
-              <div className="mt-6 grid grid-cols-2 border border-[#34402f] bg-[#0d120d] font-mono text-xs sm:mt-0">
-                <div className="border-r border-[#34402f] px-4 py-3">
-                  <p className="uppercase tracking-[0.14em] text-stone-500">Canal</p>
-                  <p className="mt-1 font-bold text-lime-200">PRESENCIAL</p>
+              <div className="mt-6 grid grid-cols-2 overflow-hidden rounded-lg border border-outline-variant bg-surface-lowest text-xs shadow-panel sm:mt-0">
+                <div className="border-r border-outline-variant px-4 py-3">
+                  <p className="uppercase tracking-[0.14em] text-outline">Canal</p>
+                  <p className="mt-1 font-bold text-primary">PRESENCIAL</p>
                 </div>
                 <div className="px-4 py-3">
-                  <p className="uppercase tracking-[0.14em] text-stone-500">Dados</p>
-                  <p className="mt-1 font-bold text-lime-200">API SEGURA</p>
+                  <p className="uppercase tracking-[0.14em] text-outline">Dados</p>
+                  <p className="mt-1 font-bold text-primary">API SEGURA</p>
                 </div>
               </div>
             </section>
@@ -124,24 +124,24 @@ export default function App() {
               <div className="space-y-6">
                 <PlayerQuickSearch onSelect={setSelectedPlayer} />
 
-                <aside aria-live="polite" className="border border-[#384534] bg-[#0d120d] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.25)] sm:p-6">
-                  <div className="flex items-center justify-between gap-4 border-b border-[#2d382a] pb-4">
-                    <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">Próximo check-in</p>
-                    <span className={`h-2.5 w-2.5 ${selectedPlayer ? 'bg-lime-300 shadow-[0_0_14px_rgba(190,242,100,0.9)]' : 'bg-stone-700'}`} />
+                <aside aria-live="polite" className="rounded-xl border border-outline-variant bg-surface-lowest p-5 shadow-panel sm:p-6">
+                  <div className="flex items-center justify-between gap-4 border-b border-outline-variant pb-4">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Próximo check-in</p>
+                    <span className={`h-2.5 w-2.5 ${selectedPlayer ? 'bg-primary shadow-[0_0_14px_rgba(255,94,0,0.9)]' : 'bg-surface-container'}`} />
                   </div>
                   {selectedPlayer ? (
                     <div className="mt-5">
-                      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-500">Operador selecionado</p>
-                      <p className="mt-2 text-2xl font-bold text-white">{selectedPlayer.name}</p>
-                      <div className="mt-4 grid grid-cols-2 gap-px border border-[#34402f] bg-[#34402f] font-mono text-xs">
-                        <div className="bg-[#111711] p-3"><p className="text-stone-500">CADASTRO</p><p className="mt-1 font-bold text-lime-200">#{selectedPlayer.registration_number}</p></div>
-                        <div className="bg-[#111711] p-3"><p className="text-stone-500">TELEFONE</p><p className="mt-1 font-bold text-stone-200">{formatPhone(selectedPlayer.phone)}</p></div>
+                      <p className="text-[11px] uppercase tracking-[0.16em] text-outline">Operador selecionado</p>
+                      <p className="mt-2 text-2xl font-bold text-on-surface">{selectedPlayer.name}</p>
+                      <div className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-outline-variant bg-outline-variant text-xs">
+                        <div className="bg-surface-low p-3"><p className="text-outline">CADASTRO</p><p className="mt-1 font-bold text-primary">#{selectedPlayer.registration_number}</p></div>
+                        <div className="bg-surface-low p-3"><p className="text-outline">TELEFONE</p><p className="mt-1 font-bold text-on-surface">{formatPhone(selectedPlayer.phone)}</p></div>
                       </div>
-                      <p className="mt-4 font-mono text-xs text-stone-400">CPF // {formatCpf(selectedPlayer.cpf)}</p>
-                      <p className="mt-5 border-l-2 border-lime-300 bg-lime-300/5 px-3 py-2 text-sm leading-6 text-lime-100">Abra um jogo na aba Operação para iniciar o check-in deste jogador.</p>
+                      <p className="mt-4 text-xs text-on-surface-variant">CPF // {formatCpf(selectedPlayer.cpf)}</p>
+                      <p className="mt-5 border-l-2 border-primary bg-primary/5 px-3 py-2 text-sm leading-6 text-primary">Abra um jogo na aba Operação para iniciar o check-in deste jogador.</p>
                     </div>
                   ) : (
-                    <p className="mt-5 text-sm leading-6 text-stone-400">Selecione um resultado da busca ou conclua um cadastro para preparar o próximo check-in.</p>
+                    <p className="mt-5 text-sm leading-6 text-on-surface-variant">Selecione um resultado da busca ou conclua um cadastro para preparar o próximo check-in.</p>
                   )}
                 </aside>
               </div>

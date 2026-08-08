@@ -44,65 +44,65 @@ export function GameSummaryCard({ game, onGameFinished }: Props) {
   }
 
   return (
-    <div className="border border-[#384534] bg-[#0d120d] p-5 sm:p-6">
-      <div className="flex items-center justify-between gap-4 border-b border-[#2d382a] pb-4">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">
+    <div className="border border-outline-variant bg-surface-lowest p-5 sm:p-6">
+      <div className="flex items-center justify-between gap-4 border-b border-outline-variant pb-4">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
           Jogo atual
         </p>
-        <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-500">
+        <span className="text-[10px] uppercase tracking-[0.12em] text-outline">
           ID · {game.id.slice(0, 8)}
         </span>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-px border border-[#34402f] bg-[#34402f] font-mono text-xs">
-        <div className="bg-[#111711] p-3 text-center">
-          <p className="uppercase tracking-[0.12em] text-stone-500">Equipados</p>
-          <p className="mt-1 text-xl font-bold text-stone-300">
+      <div className="mt-4 grid grid-cols-3 gap-px border border-outline-variant bg-primary-container text-xs">
+        <div className="bg-surface-low p-3 text-center">
+          <p className="uppercase tracking-[0.12em] text-outline">Equipados</p>
+          <p className="mt-1 text-xl font-bold text-on-surface-variant">
             {summary !== null ? summary.equipped_count : '—'}
           </p>
         </div>
-        <div className="bg-[#111711] p-3 text-center">
-          <p className="uppercase tracking-[0.12em] text-stone-500">Aluguéis</p>
-          <p className="mt-1 text-xl font-bold text-stone-300">
+        <div className="bg-surface-low p-3 text-center">
+          <p className="uppercase tracking-[0.12em] text-outline">Aluguéis</p>
+          <p className="mt-1 text-xl font-bold text-on-surface-variant">
             {summary !== null ? summary.rental_count : '—'}
           </p>
         </div>
-        <div className="bg-[#111711] p-3 text-center">
-          <p className="uppercase tracking-[0.12em] text-stone-500">Faturamento</p>
-          <p className="mt-1 text-base font-bold text-stone-300">
+        <div className="bg-surface-low p-3 text-center">
+          <p className="uppercase tracking-[0.12em] text-outline">Faturamento</p>
+          <p className="mt-1 text-base font-bold text-on-surface-variant">
             {summary !== null ? formatCurrency(summary.total_revenue) : '—'}
           </p>
         </div>
       </div>
 
       {game.notes && (
-        <p className="mt-3 text-sm leading-6 text-stone-400">
-          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-500">Obs: </span>
+        <p className="mt-3 text-sm leading-6 text-on-surface-variant">
+          <span className="text-[10px] uppercase tracking-[0.12em] text-outline">Obs: </span>
           {game.notes}
         </p>
       )}
 
       {error && (
-        <p className="mt-4 border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">
+        <p className="mt-4 border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">
           {error}
         </p>
       )}
 
-      <div className="mt-5 flex justify-end border-t border-[#2d382a] pt-4">
+      <div className="mt-5 flex justify-end border-t border-outline-variant pt-4">
         {confirming ? (
           <div className="flex items-center gap-3">
-            <p className="font-mono text-xs text-amber-300">Confirmar finalização?</p>
+            <p className="text-xs text-amber-600">Confirmar finalização?</p>
             <button
               onClick={() => setConfirming(false)}
               disabled={loading}
-              className="border border-[#384534] px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-stone-400 hover:border-stone-500 disabled:opacity-40"
+              className="border border-outline-variant px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant hover:border-outline disabled:opacity-40"
             >
               Não
             </button>
             <button
               onClick={handleFinish}
               disabled={loading}
-              className="border border-red-400 bg-red-400/10 px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-red-300 hover:bg-red-400/20 disabled:opacity-40"
+              className="border border-error bg-error/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-error hover:bg-error/20 disabled:opacity-40"
             >
               {loading ? 'Finalizando…' : 'Sim, finalizar'}
             </button>
@@ -110,7 +110,7 @@ export function GameSummaryCard({ game, onGameFinished }: Props) {
         ) : (
           <button
             onClick={() => setConfirming(true)}
-            className="border border-red-400/50 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-red-400 transition hover:border-red-400 hover:bg-red-400/10"
+            className="border border-error/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-error transition hover:border-error hover:bg-error/10"
           >
             Finalizar jogo
           </button>

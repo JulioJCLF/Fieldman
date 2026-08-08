@@ -72,50 +72,50 @@ export function TabCard({ tab, onUpdated }: Props) {
 
   return (
     <>
-      <div className={`border bg-[#0d120d] ${isPaidOff ? 'border-[#2d382a]' : 'border-[#384534]'}`}>
+      <div className={`border bg-surface-lowest ${isPaidOff ? 'border-outline-variant' : 'border-outline-variant'}`}>
         {/* Cabeçalho do card */}
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-[#111711]"
+          className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-surface-low"
         >
           <div className="flex items-center gap-3 min-w-0">
-            <span className={`shrink-0 border px-1.5 py-0.5 font-mono text-[10px] font-bold ${
+            <span className={`shrink-0 border px-1.5 py-0.5 text-[10px] font-bold ${
               tab.modality === 'EQUIPPED'
-                ? 'border-sky-400/40 text-sky-400'
-                : 'border-amber-400/40 text-amber-400'
+                ? 'border-sky-400/40 text-sky-600'
+                : 'border-amber-400/40 text-amber-600'
             }`}>
               {MODALITY_BADGE[tab.modality]}
             </span>
-            <span className="truncate text-sm font-bold text-stone-200">{tab.player_name}</span>
+            <span className="truncate text-sm font-bold text-on-surface">{tab.player_name}</span>
             {tab.guest_name && (
-              <span className="shrink-0 font-mono text-[10px] text-stone-500">avulso</span>
+              <span className="shrink-0 text-[10px] text-outline">avulso</span>
             )}
           </div>
 
-          <div className="flex shrink-0 items-center gap-3 font-mono text-xs">
+          <div className="flex shrink-0 items-center gap-3 text-xs">
             {!isPaidOff && (
-              <span className="text-amber-300">{formatCurrency(totalPending)} pendente</span>
+              <span className="text-amber-600">{formatCurrency(totalPending)} pendente</span>
             )}
             {isPaidOff && (
-              <span className="text-lime-400">Pago</span>
+              <span className="text-primary">Pago</span>
             )}
-            <span className="text-stone-600">{expanded ? '▲' : '▼'}</span>
+            <span className="text-outline">{expanded ? '▲' : '▼'}</span>
           </div>
         </button>
 
         {/* Detalhes expandidos */}
         {expanded && (
-          <div className="border-t border-[#2d382a] px-4 pb-4 pt-3 space-y-3">
+          <div className="border-t border-outline-variant px-4 pb-4 pt-3 space-y-3">
             {/* Taxa de entrada */}
-            <div className="flex items-center justify-between font-mono text-xs">
-              <span className="text-stone-500">Taxa de entrada</span>
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-outline">Taxa de entrada</span>
               <div className="flex items-center gap-2">
-                <span className="text-stone-300">{formatCurrency(Number(tab.entry_fee))}</span>
+                <span className="text-on-surface-variant">{formatCurrency(Number(tab.entry_fee))}</span>
                 <span className={`border px-1.5 py-0.5 text-[10px] ${
                   tab.entry_status === 'PAID'
-                    ? 'border-lime-400/30 text-lime-400'
-                    : 'border-amber-400/30 text-amber-400'
+                    ? 'border-primary/30 text-primary'
+                    : 'border-amber-400/30 text-amber-600'
                 }`}>
                   {tab.entry_status === 'PAID' ? 'Pago' : 'Pendente'}
                 </span>
@@ -125,26 +125,26 @@ export function TabCard({ tab, onUpdated }: Props) {
             {/* Recargas */}
             {tab.refills.length > 0 && (
               <div className="space-y-1.5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-600">Recargas / Itens</p>
+                <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Recargas / Itens</p>
                 {tab.refills.map((r) => (
-                  <div key={r.id} className="flex items-center justify-between gap-2 font-mono text-xs">
-                    <span className="text-stone-400">
-                      <span className="text-stone-600">{ITEM_TYPE_SHORT[r.item_type]} · </span>
+                  <div key={r.id} className="flex items-center justify-between gap-2 text-xs">
+                    <span className="text-on-surface-variant">
+                      <span className="text-outline">{ITEM_TYPE_SHORT[r.item_type]} · </span>
                       {r.description} ×{r.quantity}
                     </span>
                     <div className="flex shrink-0 items-center gap-2">
-                      <span className="text-stone-300">{formatCurrency(Number(r.total_price))}</span>
+                      <span className="text-on-surface-variant">{formatCurrency(Number(r.total_price))}</span>
                       {r.payment_status === 'OPEN' ? (
                         <button
                           type="button"
                           onClick={() => handleMarkRefillPaid(r)}
                           disabled={payingRefill === r.id}
-                          className="border border-amber-400/40 px-2 py-0.5 text-[10px] text-amber-400 hover:bg-amber-400/10 disabled:opacity-40"
+                          className="border border-amber-400/40 px-2 py-0.5 text-[10px] text-amber-600 hover:bg-amber-400/10 disabled:opacity-40"
                         >
                           {payingRefill === r.id ? '…' : 'Pagar'}
                         </button>
                       ) : (
-                        <span className="border border-lime-400/30 px-2 py-0.5 text-[10px] text-lime-400">Pago</span>
+                        <span className="border border-primary/30 px-2 py-0.5 text-[10px] text-primary">Pago</span>
                       )}
                     </div>
                   </div>
@@ -153,15 +153,15 @@ export function TabCard({ tab, onUpdated }: Props) {
             )}
 
             {refillPayError && (
-              <p className="font-mono text-xs text-red-400">{refillPayError}</p>
+              <p className="text-xs text-error">{refillPayError}</p>
             )}
 
             {/* Ações */}
-            <div className="flex gap-2 border-t border-[#2d382a] pt-3">
+            <div className="flex gap-2 border-t border-outline-variant pt-3">
               <button
                 type="button"
                 onClick={() => setShowRefill(true)}
-                className="border border-[#384534] px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-stone-400 hover:border-stone-500 hover:text-stone-200"
+                className="border border-outline-variant px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant hover:border-outline hover:text-on-surface"
               >
                 + Recarga
               </button>
@@ -169,7 +169,7 @@ export function TabCard({ tab, onUpdated }: Props) {
                 <button
                   type="button"
                   onClick={() => setShowCheckout(true)}
-                  className="border border-lime-300/60 px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-lime-300 hover:border-lime-300 hover:bg-lime-300/10"
+                  className="border border-primary/60 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] text-primary hover:border-primary hover:bg-primary/10"
                 >
                   Fechar comanda · {formatCurrency(totalPending)}
                 </button>

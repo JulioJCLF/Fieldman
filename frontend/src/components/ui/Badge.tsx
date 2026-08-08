@@ -8,16 +8,16 @@ interface Props {
 }
 
 const TONES: Record<Tone, string> = {
-  neutral: 'border-[#3d4839] text-stone-400',
-  success: 'border-lime-400/40 text-lime-400',
-  warning: 'border-amber-400/40 text-amber-400',
-  danger:  'border-red-400/40 text-red-400',
-  info:    'border-sky-400/40 text-sky-400',
+  neutral: 'border-outline-variant bg-surface-container text-on-surface-variant',
+  success: 'border-primary/30 bg-primary/10 text-primary',
+  warning: 'border-amber-500/30 bg-amber-500/10 text-amber-700',
+  danger:  'border-error/30 bg-error/10 text-error',
+  info:    'border-sky-500/30 bg-sky-500/10 text-sky-700',
 };
 
 export function Badge({ tone = 'neutral', children }: Props) {
   return (
-    <span className={`inline-block border px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.12em] ${TONES[tone]}`}>
+    <span className={`inline-block rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] ${TONES[tone]}`}>
       {children}
     </span>
   );

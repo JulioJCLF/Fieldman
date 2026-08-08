@@ -23,12 +23,12 @@ export function BarChart({ bars, height = 180 }: Props) {
           const pct = (bar.value / max) * 100;
           return (
             <div key={bar.label} className="flex flex-1 flex-col items-center justify-end gap-1" title={`${bar.label}: ${formatCurrency(bar.value)}`}>
-              <span className="font-mono text-[9px] text-stone-500">{bar.value > 0 ? formatCompact(bar.value) : ''}</span>
+              <span className="text-[9px] text-outline">{bar.value > 0 ? formatCompact(bar.value) : ''}</span>
               <div
-                className={`w-full transition-all ${bar.highlight ? 'bg-lime-300' : 'bg-[#3d4a34]'}`}
+                className={`w-full transition-all ${bar.highlight ? 'bg-primary' : 'bg-primary-container'}`}
                 style={{ height: `${Math.max(pct, bar.value > 0 ? 2 : 0)}%` }}
               />
-              <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-stone-500">{bar.label}</span>
+              <span className="text-[9px] uppercase tracking-[0.08em] text-outline">{bar.label}</span>
             </div>
           );
         })}

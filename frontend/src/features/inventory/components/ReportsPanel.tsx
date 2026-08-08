@@ -58,53 +58,53 @@ export function ReportsPanel({ channel, refreshKey }: Props) {
       <div className="flex gap-2">
         {(Object.keys(PERIOD_LABELS) as Period[]).map((p) => (
           <button key={p} type="button" onClick={() => setPeriod(p)}
-            className={`border px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] transition ${
-              period === p ? 'border-lime-300 bg-lime-300/10 text-lime-300' : 'border-[#384534] text-stone-400 hover:border-stone-500'
+            className={`border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              period === p ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant text-on-surface-variant hover:border-outline'
             }`}>
             {PERIOD_LABELS[p]}
           </button>
         ))}
       </div>
 
-      {loading && <p className="font-mono text-xs text-stone-500">Carregando relatórios…</p>}
-      {error && <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>}
+      {loading && <p className="text-xs text-outline">Carregando relatórios…</p>}
+      {error && <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
 
       {!loading && !error && summary && (
         <>
           {/* Cartões de faturamento */}
-          <div className="grid grid-cols-2 gap-px border border-[#34402f] bg-[#34402f] font-mono sm:grid-cols-4">
-            <div className="bg-[#111711] p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500">Faturamento</p>
-              <p className="mt-1 text-lg font-bold text-lime-300">{formatCurrency(summary.revenue)}</p>
+          <div className="grid grid-cols-2 gap-px border border-outline-variant bg-primary-container sm:grid-cols-4">
+            <div className="bg-surface-low p-4">
+              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Faturamento</p>
+              <p className="mt-1 text-lg font-bold text-primary">{formatCurrency(summary.revenue)}</p>
             </div>
-            <div className="bg-[#111711] p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500">Lucro</p>
-              <p className="mt-1 text-lg font-bold text-stone-200">{formatCurrency(summary.profit)}</p>
+            <div className="bg-surface-low p-4">
+              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Lucro</p>
+              <p className="mt-1 text-lg font-bold text-on-surface">{formatCurrency(summary.profit)}</p>
             </div>
-            <div className="bg-[#111711] p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500">Unidades</p>
-              <p className="mt-1 text-lg font-bold text-stone-200">{summary.units_sold}</p>
+            <div className="bg-surface-low p-4">
+              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Unidades</p>
+              <p className="mt-1 text-lg font-bold text-on-surface">{summary.units_sold}</p>
             </div>
-            <div className="bg-[#111711] p-4">
-              <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500">Vendas</p>
-              <p className="mt-1 text-lg font-bold text-stone-200">{summary.sales_count}</p>
+            <div className="bg-surface-low p-4">
+              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Vendas</p>
+              <p className="mt-1 text-lg font-bold text-on-surface">{summary.sales_count}</p>
             </div>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-2">
             {/* Produtos mais vendidos */}
-            <div className="border border-[#2d382a] bg-[#0d120d] p-5">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-lime-300">Mais vendidos</p>
+            <div className="border border-outline-variant bg-surface-lowest p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Mais vendidos</p>
               {topProducts.length === 0 ? (
-                <p className="mt-3 font-mono text-xs text-stone-500">Sem vendas no período.</p>
+                <p className="mt-3 text-xs text-outline">Sem vendas no período.</p>
               ) : (
                 <ul className="mt-3 space-y-2">
                   {topProducts.map((p, i) => (
-                    <li key={p.product_id} className="flex items-center justify-between gap-3 font-mono text-xs">
-                      <span className="truncate text-stone-300">
-                        <span className="text-stone-600">{i + 1}. </span>{p.name}
+                    <li key={p.product_id} className="flex items-center justify-between gap-3 text-xs">
+                      <span className="truncate text-on-surface-variant">
+                        <span className="text-outline">{i + 1}. </span>{p.name}
                       </span>
-                      <span className="shrink-0 text-stone-400">{p.units_sold} un · {formatCurrency(p.revenue)}</span>
+                      <span className="shrink-0 text-on-surface-variant">{p.units_sold} un · {formatCurrency(p.revenue)}</span>
                     </li>
                   ))}
                 </ul>
@@ -112,16 +112,16 @@ export function ReportsPanel({ channel, refreshKey }: Props) {
             </div>
 
             {/* Por categoria */}
-            <div className="border border-[#2d382a] bg-[#0d120d] p-5">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-lime-300">Por categoria</p>
+            <div className="border border-outline-variant bg-surface-lowest p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Por categoria</p>
               {topCategories.length === 0 ? (
-                <p className="mt-3 font-mono text-xs text-stone-500">Sem vendas no período.</p>
+                <p className="mt-3 text-xs text-outline">Sem vendas no período.</p>
               ) : (
                 <ul className="mt-3 space-y-2">
                   {topCategories.map((c) => (
-                    <li key={c.category} className="flex items-center justify-between gap-3 font-mono text-xs">
-                      <span className="truncate text-stone-300">{c.category}</span>
-                      <span className="shrink-0 text-stone-400">{c.units_sold} un · {formatCurrency(c.revenue)}</span>
+                    <li key={c.category} className="flex items-center justify-between gap-3 text-xs">
+                      <span className="truncate text-on-surface-variant">{c.category}</span>
+                      <span className="shrink-0 text-on-surface-variant">{c.units_sold} un · {formatCurrency(c.revenue)}</span>
                     </li>
                   ))}
                 </ul>

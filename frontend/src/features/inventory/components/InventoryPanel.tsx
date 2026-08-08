@@ -56,11 +56,11 @@ export function InventoryPanel({ channel }: Props) {
 
   return (
     <section>
-      <div className="border-b border-[#293226] pb-6">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-lime-300">
+      <div className="border-b border-outline-variant pb-6">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
           {channel === 'SNACKBAR' ? 'Módulo 03 · lanchonete' : 'Módulo 04 · loja'}
         </p>
-        <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-2 text-3xl font-black uppercase tracking-tight text-on-surface sm:text-4xl">
           {CHANNEL_LABEL[channel]}.
         </h2>
       </div>
@@ -69,8 +69,8 @@ export function InventoryPanel({ channel }: Props) {
       <div className="mt-6 flex gap-2">
         {(Object.keys(VIEW_LABELS) as View[]).map((v) => (
           <button key={v} type="button" onClick={() => setView(v)}
-            className={`border px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] transition ${
-              view === v ? 'border-lime-300 bg-lime-300/10 text-lime-300' : 'border-[#384534] text-stone-400 hover:border-stone-500'
+            className={`border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              view === v ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant text-on-surface-variant hover:border-outline'
             }`}>
             {VIEW_LABELS[v]}
           </button>
@@ -78,8 +78,8 @@ export function InventoryPanel({ channel }: Props) {
       </div>
 
       <div className="mt-6">
-        {loading && <p className="font-mono text-xs text-stone-500">Carregando…</p>}
-        {error && <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>}
+        {loading && <p className="text-xs text-outline">Carregando…</p>}
+        {error && <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
 
         {!loading && !error && view === 'sale' && (
           <SalePosForm channel={channel} products={products} onSold={handleSold} />
@@ -90,7 +90,7 @@ export function InventoryPanel({ channel }: Props) {
             <div className="flex justify-end">
               {!showForm && (
                 <button onClick={() => setShowForm(true)}
-                  className="border border-lime-300 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-lime-200 transition hover:bg-lime-300 hover:text-[#080b08]">
+                  className="border border-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-on-primary">
                   + Novo produto
                 </button>
               )}
@@ -101,8 +101,8 @@ export function InventoryPanel({ channel }: Props) {
             )}
 
             {products.length === 0 ? (
-              <div className="border border-dashed border-[#384534] px-5 py-6 text-center">
-                <p className="font-mono text-xs text-stone-500">Nenhum produto cadastrado ainda.</p>
+              <div className="border border-dashed border-outline-variant px-5 py-6 text-center">
+                <p className="text-xs text-outline">Nenhum produto cadastrado ainda.</p>
               </div>
             ) : (
               <div className="grid gap-3 sm:grid-cols-2">

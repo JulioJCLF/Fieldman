@@ -43,14 +43,14 @@ export function CheckInSection({ gameId }: Props) {
   const rental   = tabs.filter((t) => t.modality === 'RENTAL').length;
 
   return (
-    <section className="mt-8 border-t border-[#293226] pt-8">
+    <section className="mt-8 border-t border-outline-variant pt-8">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-lime-300">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
             Check-in · Comandas
           </p>
           {tabs.length > 0 && (
-            <p className="mt-1 font-mono text-[10px] text-stone-500">
+            <p className="mt-1 text-[10px] text-outline">
               {tabs.length} jogador{tabs.length !== 1 ? 'es' : ''} · {equipped} equipado{equipped !== 1 ? 's' : ''} · {rental} aluguel{rental !== 1 ? 's' : ''}
             </p>
           )}
@@ -59,7 +59,7 @@ export function CheckInSection({ gameId }: Props) {
         {!showForm && (
           <button
             onClick={() => setShowForm(true)}
-            className="border border-lime-300 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-lime-200 transition hover:bg-lime-300 hover:text-[#080b08]"
+            className="border border-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-on-primary"
           >
             + Novo check-in
           </button>
@@ -76,11 +76,11 @@ export function CheckInSection({ gameId }: Props) {
         )}
 
         {loading && (
-          <p className="font-mono text-xs text-stone-500">Carregando comandas…</p>
+          <p className="text-xs text-outline">Carregando comandas…</p>
         )}
 
         {error && (
-          <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">
+          <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">
             {error}
           </p>
         )}

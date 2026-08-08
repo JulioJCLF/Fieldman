@@ -108,8 +108,8 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border border-[#384534] bg-[#0d120d] p-5 sm:p-6">
-      <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">
+    <form onSubmit={handleSubmit} className="border border-outline-variant bg-surface-lowest p-5 sm:p-6">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
         Novo check-in
       </p>
 
@@ -121,10 +121,10 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
               key={opt}
               type="button"
               onClick={() => handleModeChange(opt)}
-              className={`border px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 mode === opt
-                  ? 'border-lime-300 bg-lime-300/10 text-lime-300'
-                  : 'border-[#384534] text-stone-400 hover:border-stone-500'
+                  ? 'border-primary bg-primary/10 text-primary'
+                  : 'border-outline-variant text-on-surface-variant hover:border-outline'
               }`}
             >
               {opt === 'registered' ? 'Cadastrado' : 'Avulso'}
@@ -135,7 +135,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
         {/* Busca de jogador cadastrado */}
         {mode === 'registered' && (
           <div>
-            <label className="block font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">
+            <label className="block text-[10px] uppercase tracking-[0.14em] text-outline">
               Buscar por nº cadastro, CPF ou telefone
             </label>
             <div className="mt-2 flex gap-2">
@@ -145,26 +145,26 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
                 onChange={(e) => { setSearchQuery(e.target.value); setFoundPlayer(null); }}
                 onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleSearch())}
                 placeholder="Ex: 42 · 529.982.247-25 · (11) 9999-9999"
-                className="flex-1 border border-[#384534] bg-[#111711] px-3 py-2 text-sm text-stone-200 placeholder-stone-600 outline-none focus:border-lime-300/50"
+                className="flex-1 border border-outline-variant bg-surface-low px-3 py-2 text-sm text-on-surface placeholder-outline outline-none focus:border-primary/50"
               />
               <button
                 type="button"
                 onClick={handleSearch}
                 disabled={searching || !searchQuery.trim()}
-                className="border border-[#384534] px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-stone-400 hover:border-stone-500 disabled:opacity-40"
+                className="border border-outline-variant px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-on-surface-variant hover:border-outline disabled:opacity-40"
               >
                 {searching ? '…' : 'Buscar'}
               </button>
             </div>
 
             {searchError && (
-              <p className="mt-2 font-mono text-xs text-red-400">{searchError}</p>
+              <p className="mt-2 text-xs text-error">{searchError}</p>
             )}
 
             {foundPlayer && (
-              <div className="mt-3 border border-lime-300/30 bg-lime-300/5 px-4 py-3">
-                <p className="font-mono text-xs font-bold text-lime-200">{foundPlayer.name}</p>
-                <p className="mt-0.5 font-mono text-[10px] text-stone-500">
+              <div className="mt-3 border border-primary/30 bg-primary/5 px-4 py-3">
+                <p className="text-xs font-bold text-primary">{foundPlayer.name}</p>
+                <p className="mt-0.5 text-[10px] text-outline">
                   Cad. #{foundPlayer.registration_number} · CPF {foundPlayer.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}
                 </p>
               </div>
@@ -175,7 +175,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
         {/* Nome do avulso */}
         {mode === 'guest' && (
           <div>
-            <label htmlFor="guest-name" className="block font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">
+            <label htmlFor="guest-name" className="block text-[10px] uppercase tracking-[0.14em] text-outline">
               Nome do avulso
             </label>
             <input
@@ -184,24 +184,24 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
               value={guestName}
               onChange={(e) => setGuestName(e.target.value)}
               placeholder="Nome para identificação na comanda"
-              className="mt-2 w-full border border-[#384534] bg-[#111711] px-3 py-2 text-sm text-stone-200 placeholder-stone-600 outline-none focus:border-lime-300/50"
+              className="mt-2 w-full border border-outline-variant bg-surface-low px-3 py-2 text-sm text-on-surface placeholder-outline outline-none focus:border-primary/50"
             />
           </div>
         )}
 
         {/* Modalidade */}
         <fieldset>
-          <legend className="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">
+          <legend className="text-[10px] uppercase tracking-[0.14em] text-outline">
             Modalidade
           </legend>
           <div className="mt-2 flex gap-3">
             {(['EQUIPPED', 'RENTAL'] as TabModality[]).map((opt) => (
               <label
                 key={opt}
-                className={`flex cursor-pointer items-center gap-2 border px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.14em] transition ${
+                className={`flex cursor-pointer items-center gap-2 border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
                   modality === opt
-                    ? 'border-lime-300 bg-lime-300/10 text-lime-300'
-                    : 'border-[#384534] text-stone-400 hover:border-stone-500'
+                    ? 'border-primary bg-primary/10 text-primary'
+                    : 'border-outline-variant text-on-surface-variant hover:border-outline'
                 }`}
               >
                 <input
@@ -220,7 +220,7 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
 
         {/* Taxa de entrada */}
         <div>
-          <label htmlFor="entry-fee" className="block font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">
+          <label htmlFor="entry-fee" className="block text-[10px] uppercase tracking-[0.14em] text-outline">
             Taxa de entrada (R$)
           </label>
           <input
@@ -230,29 +230,29 @@ export function CheckInForm({ gameId, onCheckedIn, onCancel }: Props) {
             value={entryFee}
             onChange={(e) => setEntryFee(e.target.value)}
             placeholder="0,00"
-            className="mt-2 w-full border border-[#384534] bg-[#111711] px-3 py-2 text-sm text-stone-200 placeholder-stone-600 outline-none focus:border-lime-300/50"
+            className="mt-2 w-full border border-outline-variant bg-surface-low px-3 py-2 text-sm text-on-surface placeholder-outline outline-none focus:border-primary/50"
           />
         </div>
 
         {submitError && (
-          <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">
+          <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">
             {submitError}
           </p>
         )}
 
-        <div className="flex justify-end gap-3 border-t border-[#2d382a] pt-4">
+        <div className="flex justify-end gap-3 border-t border-outline-variant pt-4">
           <button
             type="button"
             onClick={onCancel}
             disabled={submitting}
-            className="border border-[#384534] px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-stone-400 hover:border-stone-500 hover:text-stone-200 disabled:opacity-40"
+            className="border border-outline-variant px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant hover:border-outline hover:text-on-surface disabled:opacity-40"
           >
             Cancelar
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="border border-lime-300 bg-lime-300 px-5 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#080b08] hover:bg-lime-200 disabled:opacity-40"
+            className="border border-primary bg-primary px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-primary hover:bg-primary disabled:opacity-40"
           >
             {submitting ? 'Abrindo…' : 'Abrir comanda'}
           </button>

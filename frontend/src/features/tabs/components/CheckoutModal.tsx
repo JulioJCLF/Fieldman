@@ -44,7 +44,7 @@ export function CheckoutModal({ tab, onCheckedOut, onClose }: Props) {
   return (
     <Modal title={pixMode ? 'Pagamento PIX' : 'Fechar comanda'} onClose={onClose} closeDisabled={loading}>
       <div className="space-y-4">
-        <p className="font-mono text-sm font-bold text-white">{tab.player_name}</p>
+        <p className="text-sm font-bold text-on-surface">{tab.player_name}</p>
 
         {pixMode ? (
           <PixPayment
@@ -55,27 +55,27 @@ export function CheckoutModal({ tab, onCheckedOut, onClose }: Props) {
         ) : (
           <>
             {/* Resumo de pendências */}
-            <div className="border border-[#34402f] bg-[#111711] font-mono text-xs">
+            <div className="border border-outline-variant bg-surface-low text-xs">
               {entryOwed > 0 && (
-                <div className="flex justify-between border-b border-[#34402f] px-4 py-3">
-                  <span className="text-stone-400">Taxa de entrada ({tab.modality === 'EQUIPPED' ? 'Equipado' : 'Aluguel'})</span>
-                  <span className="font-bold text-stone-200">{formatCurrency(entryOwed)}</span>
+                <div className="flex justify-between border-b border-outline-variant px-4 py-3">
+                  <span className="text-on-surface-variant">Taxa de entrada ({tab.modality === 'EQUIPPED' ? 'Equipado' : 'Aluguel'})</span>
+                  <span className="font-bold text-on-surface">{formatCurrency(entryOwed)}</span>
                 </div>
               )}
               {openRefills.map((r) => (
-                <div key={r.id} className="flex justify-between border-b border-[#34402f] px-4 py-3 last:border-0">
-                  <span className="text-stone-400">{r.description} ×{r.quantity}</span>
-                  <span className="font-bold text-stone-200">{formatCurrency(Number(r.total_price))}</span>
+                <div key={r.id} className="flex justify-between border-b border-outline-variant px-4 py-3 last:border-0">
+                  <span className="text-on-surface-variant">{r.description} ×{r.quantity}</span>
+                  <span className="font-bold text-on-surface">{formatCurrency(Number(r.total_price))}</span>
                 </div>
               ))}
-              <div className="flex justify-between bg-[#1a221a] px-4 py-3">
-                <span className="font-bold uppercase tracking-[0.14em] text-lime-300">Total</span>
-                <span className="text-xl font-bold text-lime-300">{formatCurrency(total)}</span>
+              <div className="flex justify-between bg-surface-container px-4 py-3">
+                <span className="font-bold uppercase tracking-[0.14em] text-primary">Total</span>
+                <span className="text-xl font-bold text-primary">{formatCurrency(total)}</span>
               </div>
             </div>
 
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">Forma de pagamento</p>
+              <p className="text-[10px] uppercase tracking-[0.14em] text-outline">Forma de pagamento</p>
               <div className="mt-2">
                 <SegmentedControl
                   value={method}
@@ -88,7 +88,7 @@ export function CheckoutModal({ tab, onCheckedOut, onClose }: Props) {
                 />
               </div>
               {method === 'PIX' && (
-                <p className="mt-2 font-mono text-[10px] text-stone-500">
+                <p className="mt-2 text-[10px] text-outline">
                   Um QR Code será gerado para o cliente pagar pelo celular.
                 </p>
               )}
@@ -96,7 +96,7 @@ export function CheckoutModal({ tab, onCheckedOut, onClose }: Props) {
 
             {error && <Alert>{error}</Alert>}
 
-            <div className="flex justify-end gap-3 border-t border-[#2d382a] pt-4">
+            <div className="flex justify-end gap-3 border-t border-outline-variant pt-4">
               <Button variant="secondary" onClick={onClose} disabled={loading}>Cancelar</Button>
               <Button onClick={handleConfirm} disabled={loading}>
                 {loading ? 'Confirmando…' : method === 'PIX' ? `Gerar PIX ${formatCurrency(total)}` : `Confirmar ${formatCurrency(total)}`}

@@ -47,12 +47,12 @@ export function OverviewCards() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-lime-300">Visão geral</p>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Visão geral</p>
         <div className="flex gap-2">
           {(Object.keys(PERIOD_LABELS) as Period[]).map((p) => (
             <button key={p} type="button" onClick={() => setPeriod(p)}
-              className={`border px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.12em] transition ${
-                period === p ? 'border-lime-300 bg-lime-300/10 text-lime-300' : 'border-[#384534] text-stone-400 hover:border-stone-500'
+              className={`border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em] transition ${
+                period === p ? 'border-primary bg-primary/10 text-primary' : 'border-outline-variant text-on-surface-variant hover:border-outline'
               }`}>
               {PERIOD_LABELS[p]}
             </button>
@@ -60,17 +60,17 @@ export function OverviewCards() {
         </div>
       </div>
 
-      {loading && <p className="font-mono text-xs text-stone-500">Carregando…</p>}
-      {error && <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>}
+      {loading && <p className="text-xs text-outline">Carregando…</p>}
+      {error && <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
 
       {!loading && !error && report && (
         <>
-          <div className="border border-lime-300/30 bg-lime-300/5 p-5">
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">Faturamento total</p>
-            <p className="mt-1 text-3xl font-black text-lime-300">{formatCurrency(report.revenue.total)}</p>
+          <div className="border border-primary/30 bg-primary/5 p-5">
+            <p className="text-[10px] uppercase tracking-[0.14em] text-outline">Faturamento total</p>
+            <p className="mt-1 text-3xl font-black text-primary">{formatCurrency(report.revenue.total)}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-px border border-[#34402f] bg-[#34402f] font-mono sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-px border border-outline-variant bg-primary-container sm:grid-cols-3 lg:grid-cols-5">
             {[
               ['Equipado', report.revenue.entry_equipped],
               ['Aluguel', report.revenue.entry_rental],
@@ -78,23 +78,23 @@ export function OverviewCards() {
               ['Lanchonete', report.revenue.snackbar],
               ['Loja', report.revenue.store],
             ].map(([label, value]) => (
-              <div key={label as string} className="bg-[#111711] p-4">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500">{label}</p>
-                <p className="mt-1 text-sm font-bold text-stone-200">{formatCurrency(value as number)}</p>
+              <div key={label as string} className="bg-surface-low p-4">
+                <p className="text-[10px] uppercase tracking-[0.12em] text-outline">{label}</p>
+                <p className="mt-1 text-sm font-bold text-on-surface">{formatCurrency(value as number)}</p>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-px border border-[#34402f] bg-[#34402f] font-mono sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px border border-outline-variant bg-primary-container sm:grid-cols-4">
             {[
               ['Jogos', report.counts.games],
               ['Equipados', report.counts.equipped],
               ['Aluguéis', report.counts.rental],
               ['Recargas', report.counts.refills],
             ].map(([label, value]) => (
-              <div key={label as string} className="bg-[#111711] p-4">
-                <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500">{label}</p>
-                <p className="mt-1 text-xl font-bold text-stone-200">{value as number}</p>
+              <div key={label as string} className="bg-surface-low p-4">
+                <p className="text-[10px] uppercase tracking-[0.12em] text-outline">{label}</p>
+                <p className="mt-1 text-xl font-bold text-on-surface">{value as number}</p>
               </div>
             ))}
           </div>

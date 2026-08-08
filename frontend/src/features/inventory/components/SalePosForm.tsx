@@ -46,17 +46,17 @@ export function SalePosForm({ channel, products, onSold }: Props) {
     }
   }
 
-  const inputClass = 'mt-2 w-full border border-[#384534] bg-[#111711] px-3 py-2 text-sm text-stone-200 outline-none focus:border-lime-300/50';
-  const labelClass = 'block font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500';
+  const inputClass = 'mt-2 w-full border border-outline-variant bg-surface-low px-3 py-2 text-sm text-on-surface outline-none focus:border-primary/50';
+  const labelClass = 'block text-[10px] uppercase tracking-[0.14em] text-outline';
 
   return (
-    <form onSubmit={handleSubmit} className="border border-[#384534] bg-[#0d120d] p-5 sm:p-6">
-      <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">
+    <form onSubmit={handleSubmit} className="border border-outline-variant bg-surface-lowest p-5 sm:p-6">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
         Registrar venda
       </p>
 
       {available.length === 0 ? (
-        <p className="mt-4 font-mono text-xs text-stone-500">
+        <p className="mt-4 text-xs text-outline">
           Nenhum produto disponível em estoque. Cadastre produtos e reponha o estoque.
         </p>
       ) : (
@@ -78,18 +78,18 @@ export function SalePosForm({ channel, products, onSold }: Props) {
               <label htmlFor="sale-qty" className={labelClass}>Quantidade</label>
               <input id="sale-qty" type="number" min="1" value={quantity} onChange={(e) => setQuantity(e.target.value)} className={inputClass} />
             </div>
-            <div className="border border-[#34402f] bg-[#111711] px-4 py-2.5 text-right">
-              <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-500">Total</p>
-              <p className="mt-0.5 font-mono text-lg font-bold text-lime-300">{formatCurrency(total)}</p>
+            <div className="border border-outline-variant bg-surface-low px-4 py-2.5 text-right">
+              <p className="text-[10px] uppercase tracking-[0.12em] text-outline">Total</p>
+              <p className="mt-0.5 text-lg font-bold text-primary">{formatCurrency(total)}</p>
             </div>
           </div>
 
-          {error && <p className="border-l-2 border-red-400 bg-red-400/5 px-3 py-2 font-mono text-xs text-red-300">{error}</p>}
-          {feedback && <p className="border-l-2 border-lime-400 bg-lime-400/5 px-3 py-2 font-mono text-xs text-lime-300">{feedback}</p>}
+          {error && <p className="border-l-2 border-error bg-error/5 px-3 py-2 text-xs text-error">{error}</p>}
+          {feedback && <p className="border-l-2 border-primary bg-primary/5 px-3 py-2 text-xs text-primary">{feedback}</p>}
 
-          <div className="flex justify-end border-t border-[#2d382a] pt-4">
+          <div className="flex justify-end border-t border-outline-variant pt-4">
             <button type="submit" disabled={loading}
-              className="border border-lime-300 bg-lime-300 px-5 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-[#080b08] hover:bg-lime-200 disabled:opacity-40">
+              className="border border-primary bg-primary px-5 py-2 text-xs font-bold uppercase tracking-[0.14em] text-on-primary hover:bg-primary disabled:opacity-40">
               {loading ? 'Registrando…' : 'Confirmar venda'}
             </button>
           </div>

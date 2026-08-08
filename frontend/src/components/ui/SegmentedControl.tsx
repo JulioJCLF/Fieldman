@@ -20,10 +20,10 @@ export function SegmentedControl<T extends string>({ options, value, onChange }:
           type="button"
           onClick={() => onChange(option.value)}
           aria-pressed={value === option.value}
-          className={`border px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] transition ${
+          className={`rounded-lg border px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition ${
             value === option.value
-              ? 'border-lime-300 bg-lime-300/10 text-lime-300'
-              : 'border-[#384534] text-stone-400 hover:border-stone-500'
+              ? 'border-primary bg-primary/10 text-primary'
+              : 'border-outline-variant bg-surface-lowest text-on-surface-variant hover:border-outline'
           }`}
         >
           {option.label}

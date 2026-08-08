@@ -139,21 +139,21 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
   };
 
   return (
-    <section aria-labelledby="quick-search-title" className="border border-[#384534] bg-[#0d120d] p-5 text-white shadow-[0_18px_50px_rgba(0,0,0,0.25)] sm:p-7">
-      <div className="mb-6 border-b border-[#2d382a] pb-5">
-        <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-lime-300">Recepção // consulta</p>
+    <section aria-labelledby="quick-search-title" className="border border-outline-variant bg-surface-lowest p-5 text-on-surface shadow-panel sm:p-7">
+      <div className="mb-6 border-b border-outline-variant pb-5">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Recepção // consulta</p>
         <h2 id="quick-search-title" className="mt-2 text-2xl font-bold tracking-tight">Busca rápida para check-in</h2>
-        <p className="mt-2 text-sm leading-6 text-stone-400">Localize uma ficha existente sem navegar por listas.</p>
+        <p className="mt-2 text-sm leading-6 text-on-surface-variant">Localize uma ficha existente sem navegar por listas.</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-[minmax(10rem,0.7fr)_minmax(0,1.3fr)]">
         <div>
-          <label htmlFor="player-search-field" className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-stone-300">Buscar por</label>
+          <label htmlFor="player-search-field" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Buscar por</label>
           <select
             id="player-search-field"
             value={searchField}
             onChange={(event) => handleFieldChange(event.target.value as PlayerSearchField)}
-            className="mt-2 block min-h-[3rem] w-full border border-[#3c4639] bg-[#111611] px-3 py-2.5 font-mono text-sm text-stone-100 outline-none transition focus:border-lime-300 focus:ring-2 focus:ring-lime-300/20"
+            className="mt-2 block min-h-[3rem] w-full border border-outline-variant bg-surface-low px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
           >
             {searchOptions.map((item) => (
               <option key={item.value} value={item.value}>{item.label}</option>
@@ -162,7 +162,7 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
         </div>
 
         <div>
-          <label htmlFor="player-search-query" className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-stone-300">Consulta exata</label>
+          <label htmlFor="player-search-query" className="text-xs font-bold uppercase tracking-[0.14em] text-on-surface-variant">Consulta exata</label>
           <input
             id="player-search-query"
             type="text"
@@ -172,38 +172,38 @@ export function PlayerQuickSearch({ onSelect }: PlayerQuickSearchProps) {
             onChange={(event) => setQuery(formatSearchInput(searchField, event.target.value))}
             placeholder={option.placeholder}
             aria-describedby="player-search-hint player-search-status"
-            className="mt-2 block min-h-[3rem] w-full border border-[#3c4639] bg-[#111611] px-3 py-2.5 font-mono text-sm text-stone-100 outline-none transition placeholder:text-stone-600 focus:border-lime-300 focus:ring-2 focus:ring-lime-300/20"
+            className="mt-2 block min-h-[3rem] w-full border border-outline-variant bg-surface-low px-3 py-2.5 text-sm text-on-surface outline-none transition placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20"
           />
         </div>
       </div>
 
-      <p id="player-search-hint" className="mt-3 font-mono text-[11px] text-stone-500">// {option.hint}</p>
+      <p id="player-search-hint" className="mt-3 text-[11px] text-outline">// {option.hint}</p>
 
       <div id="player-search-status" aria-live="polite" className="mt-4 min-h-6">
         {query && !canSearch && (
           <p className="text-sm text-amber-200">Complete o valor para iniciar a busca.</p>
         )}
-        {searchState.status === 'loading' && <p className="text-sm text-stone-300">Buscando jogador…</p>}
-        {searchState.status === 'empty' && <p className="text-sm text-stone-300">Nenhum jogador encontrado com esse dado.</p>}
+        {searchState.status === 'loading' && <p className="text-sm text-on-surface-variant">Buscando jogador…</p>}
+        {searchState.status === 'empty' && <p className="text-sm text-on-surface-variant">Nenhum jogador encontrado com esse dado.</p>}
         {searchState.status === 'error' && <p role="alert" className="text-sm text-rose-300">{searchState.message}</p>}
       </div>
 
       {searchState.status === 'ready' && (
-        <div className="mt-4 border border-lime-300/40 bg-[#111811] p-4 text-stone-100">
+        <div className="mt-4 border border-primary/40 bg-surface-low p-4 text-on-surface">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-lime-300">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
                 Cadastro #{searchState.player.registration_number}
               </p>
-              <p className="mt-2 text-lg font-semibold text-white">{searchState.player.name}</p>
-              <p className="mt-2 font-mono text-xs text-stone-400">
+              <p className="mt-2 text-lg font-semibold text-on-surface">{searchState.player.name}</p>
+              <p className="mt-2 text-xs text-on-surface-variant">
                 {formatCpf(searchState.player.cpf)} · {formatPhone(searchState.player.phone)}
               </p>
             </div>
             <button
               type="button"
               onClick={() => onSelect(searchState.player)}
-              className="min-h-[3rem] bg-lime-300 px-4 py-2 font-mono text-xs font-black uppercase tracking-[0.12em] text-[#080b08] transition hover:bg-lime-200 focus:outline-none focus:ring-4 focus:ring-lime-300/30"
+              className="min-h-[3rem] bg-primary px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-on-primary transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary/30"
             >
               Selecionar para check-in
             </button>

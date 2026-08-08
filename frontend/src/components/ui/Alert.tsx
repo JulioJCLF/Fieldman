@@ -8,15 +8,15 @@ interface Props {
 }
 
 const TONES: Record<Tone, string> = {
-  error:   'border-red-400 bg-red-400/5 text-red-300',
-  success: 'border-lime-400 bg-lime-400/5 text-lime-300',
-  warning: 'border-amber-400 bg-amber-400/5 text-amber-300',
-  info:    'border-lime-300 bg-lime-300/5 text-lime-100',
+  error:   'border-error bg-error/5 text-error',
+  success: 'border-primary bg-primary/5 text-primary',
+  warning: 'border-amber-400 bg-amber-400/5 text-amber-600',
+  info:    'border-primary bg-primary/5 text-primary',
 };
 
 export function Alert({ tone = 'error', children }: Props) {
   return (
-    <p className={`border-l-2 px-3 py-2 font-mono text-xs leading-5 ${TONES[tone]}`}>
+    <p className={`rounded-lg border-l-4 px-3 py-2 text-xs leading-5 ${TONES[tone]}`}>
       {children}
     </p>
   );
