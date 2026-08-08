@@ -2,6 +2,7 @@
   "name": "fieldman",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Airsoft field management system",
   "workspaces": [
     "backend",
@@ -12,10 +13,23 @@
     "build": "npm run build --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
-    "check": "npm run typecheck && npm run test && npm run build"
+    "test:e2e": "npm run test:e2e --workspace @fieldman/web",
+    "lint": "eslint \"backend/src/**/*.ts\" \"frontend/src/**/*.{ts,tsx}\"",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "@eslint/js": "^10.0.1",
+    "concurrently": "^9.1.2",
+    "eslint": "^10.8.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.9.0",
+    "prettier": "^3.9.6",
+    "typescript-eslint": "^8.66.0"
   },
   "engines": {
     "node": ">=20"

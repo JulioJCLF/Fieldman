@@ -1,9 +1,8 @@
 import request from 'supertest';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { createApp } from '../../app.js';
+import { buildTestApp } from '../../test/harness.js';
 import type { Player } from './player.types.js';
-import type { PlayerServicePort } from './player.service.js';
 
 const player: Player = {
   id: '500c0e11-4b02-4ebd-8c07-6e14911f7f40',
@@ -19,19 +18,11 @@ const player: Player = {
   created_at: '2026-08-04T12:00:00.000Z',
 };
 
-function createTestApp(service?: Partial<PlayerServicePort>) {
-  const playerService: PlayerServicePort = {
-    register: vi.fn().mockResolvedValue(player),
-    search: vi.fn().mockResolvedValue(player),
-    ...service,
-  };
-
-  return { app: createApp({ corsOrigin: 'http://localhost:5173', playerService }), playerService };
-}
-
 describe('player routes', () => {
   it('creates a validated player with the standard API envelope', async () => {
-    const { app, playerService } = createTestApp();
+    const { app, services } = buildTestApp();
+    services.playerService.register.mockResolvedValue(player);
+
     const response = await request(app).post('/api/players').send({
       name: 'Ana Oliveira',
       cpf: '529.982.247-25',
@@ -43,23 +34,33 @@ describe('player routes', () => {
 
     expect(response.status).toBe(201);
     expect(response.body).toEqual({ success: true, data: player });
-    expect(playerService.register).toHaveBeenCalledWith(expect.objectContaining({ cpf: '52998224725' }));
+    expect(services.playerService.register).toHaveBeenCalledWith(expect.objectContaining({ cpf: '52998224725' }));
   });
 
   it('returns a player for a valid exact search', async () => {
-    const { app, playerService } = createTestApp();
+    const { app, services } = buildTestApp();
+    services.playerService.search.mockResolvedValue(player);
+
     const response = await request(app).get('/api/players/search?registration_number=18');
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ success: true, data: player });
-    expect(playerService.search).toHaveBeenCalledWith({ field: 'registration_number', value: 18 });
+    expect(services.playerService.search).toHaveBeenCalledWith({ field: 'registration_number', value: 18 });
   });
 
   it('rejects ambiguous search requests', async () => {
-    const { app } = createTestApp();
+    const { app } = buildTestApp();
     const response = await request(app).get('/api/players/search?cpf=52998224725&phone=11999999999');
 
     expect(response.status).toBe(400);
     expect(response.body.success).toBe(false);
+  });
+
+  it('returns 404 with the standard envelope for unknown routes', async () => {
+    const { app } = buildTestApp();
+    const response = await request(app).get('/api/does-not-exist');
+
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({ success: false, data: null, error: expect.any(String) });
   });
 });

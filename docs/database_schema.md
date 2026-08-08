@@ -46,3 +46,22 @@
 - `reference_date` (Date, Unique)
 - `total_revenue`, `rental_revenue`, `equipped_revenue`, `refills_revenue`, `snackbar_revenue` (Decimals)
 - `weather` (String)
+
+### `inventory_products` (`produtos` - Lanchonete + Loja unificados)
+- `id` (UUID, PK)
+- `channel` (Enum: SNACKBAR, STORE) — discrimina Lanchonete vs Loja
+- `name`, `category`
+- `cost_price`, `sale_price` (Decimals)
+- `stock_qty` (Int)
+- `active` (Boolean)
+
+### `inventory_sales` (`vendas` - Lanchonete + Loja unificados)
+- `id` (UUID, PK)
+- `channel` (Enum: SNACKBAR, STORE)
+- `product_id` (FK -> inventory_products)
+- `tab_id` (FK -> tabs, Nullable — vincula venda à comanda)
+- `quantity` (Int)
+- `unit_price`, `total_price` (Decimals — snapshot no momento da venda)
+- `sold_at` (Timestamp)
+
+> **Nota de implementação:** Lanchonete e Loja compartilham as tabelas `inventory_*` (discriminadas por `channel`) ao invés de tabelas separadas `snackbar_*` / `store_*`, dada a estrutura idêntica. Ver `docs/inventory_module_structure.md`.
